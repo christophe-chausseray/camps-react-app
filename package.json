@@ -44,9 +44,7 @@
     "start:headless": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress'",
-    "test:e2e:ci": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress:headless --spec cypress/test/e2e/**/*'",
-    "test:integration:ci": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress:headless --spec cypress/test/integration/**/*'",
-    "test:unit:ci": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress:headless --spec cypress/test/unit/**/*'",
+    "test:ci": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress:headless'",
     "cypress": "cypress open",
     "cypress:headless": "cypress run --browser chrome --headless",
     "lint": "eslint . --ext .ts --fix",
@@ -54,8 +52,7 @@
   },
   "pre-commit": [
     "lint",
-    "test:integration:ci",
-    "test:e2e:ci"
+    "test:ci"
   ],
   "eslintConfig": {
     "extends": [
