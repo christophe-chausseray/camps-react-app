@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Header } from '../../../src/component/Header';
+import { Header } from './Header';
 
-context('Header', () => {
+describe('Header', () => {
   it('render title in the header', () => {
     render(<Header />);
 

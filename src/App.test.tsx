@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from '../../../src/App';
+import App from './App';
 
-context('App', () => {
+describe('App', () => {
   it('renders without crashing', () => {
     render(<App />);
 

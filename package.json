@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.3",
     "google-map-react": "^2.1.9",
+    "graphql": "^15.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -13,6 +15,7 @@
     "@testing-library/cypress": "^7.0.2",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
+    "@testing-library/react-hooks": "^3.4.2",
     "@testing-library/user-event": "^12.2.2",
     "@types/google-map-react": "^2.1.0",
     "@types/jest": "^26.0.15",
@@ -20,10 +23,11 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/styled-components": "^5.1.4",
-    "cypress": "^6.0.0",
+    "cypress": "^6.0.1",
     "msw": "^0.23.0",
     "pre-commit": "^1.2.2",
     "react-is": "^17.0.1",
+    "react-test-renderer": "^17.0.1",
     "start-server-and-test": "^1.11.6",
     "typescript": "^4.1.2",
     "workbox-background-sync": "^5.1.4",
@@ -43,8 +47,9 @@
     "start": "react-scripts start",
     "start:headless": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
-    "test": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress'",
-    "test:ci": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress:headless'",
+    "test:unit": "react-scripts test",
+    "test:e2e": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress'",
+    "test:e2e:ci": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress:headless'",
     "cypress": "cypress open",
     "cypress:headless": "cypress run --browser chrome --headless",
     "lint": "eslint . --ext .ts --fix",
@@ -52,7 +57,8 @@
   },
   "pre-commit": [
     "lint",
-    "test:ci"
+    "test:unit",
+    "test:e2e:ci"
   ],
   "eslintConfig": {
     "extends": [

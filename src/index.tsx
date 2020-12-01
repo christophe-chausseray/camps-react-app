@@ -1,11 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ApolloProvider } from '@apollo/client';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { worker } from './mock/browser';
+import { client } from './ApolloClient';
+
+if ('development' === process.env.NODE_ENV) {
+  worker.start();
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

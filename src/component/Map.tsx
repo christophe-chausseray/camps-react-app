@@ -21,7 +21,9 @@ function Map(): JSX.Element {
         bootstrapURLKeys={{ key: 'AIzaSyD5yNw_1eBAooLt00Hk3NqgRndNlNCHSGA' }}
         defaultCenter={center}
         defaultZoom={zoom}
-      ></GoogleMapReact>
+      >
+
+      </GoogleMapReact>
     </Container>
   );
 }
