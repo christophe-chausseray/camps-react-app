@@ -13,8 +13,8 @@ describe('Hook useListCampings', () => {
         address: "Route du Château d'eau",
         city: 'RAMBOUILLET',
         location: {
-          longitude: 48.630059,
-          latitude: 1.835694,
+          longitude: 1.835694,
+          latitude: 48.630059,
         }
       },
       {
@@ -22,8 +22,8 @@ describe('Hook useListCampings', () => {
         address: '26 Route de Vauvert',
         city: 'ORMOY-LA-RIVIÈRE',
         location: {
-          longitude: 48.411278,
-          latitude: 2.143939,
+          longitude: 2.143939,
+          latitude: 48.411278,
         }
       }
     ]);

@@ -1,6 +1,9 @@
+
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import styled from 'styled-components';
+import { useListCampings } from './../hook';
+import { Camping } from '../model';
 
 const Container = styled.div`
   width: 100%;
@@ -8,12 +11,41 @@ const Container = styled.div`
   position: relative;
 `;
 
+function CampingMarker({lng, lat, name}: { lng: number, lat: number, name: string }): JSX.Element {
+  const size = 10;
+  const campingMarkerStyle = {
+    position: 'absolute',
+    width: size,
+    height: size,
+    left: -size / 2,
+    top: -size / 2,
+
+    border: '5px solid #00b92a',
+    borderRadius: size,
+    backgroundColor: '#00b92a'
+  };
+
+  return (
+    <div style={campingMarkerStyle} />
+  );
+}
+
 function Map(): JSX.Element {
   const center = {
     lat: 48.7717719,
     lng: 2.0907224,
   };
-  const zoom = 9;
+  const zoom = 8.5;
+  const { campings } = useListCampings();
+
+  const markers = campings.map((camping: Camping, key: number) => {
+    return <CampingMarker
+      lng={camping.location.longitude}
+      lat={camping.location.latitude}
+      name={camping.name}
+      key={key}
+    />
+  })
 
   return (
     <Container>
@@ -22,7 +54,7 @@ function Map(): JSX.Element {
         defaultCenter={center}
         defaultZoom={zoom}
       >
-
+        {markers}
       </GoogleMapReact>
     </Container>
   );
