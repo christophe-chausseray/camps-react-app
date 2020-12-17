@@ -25,7 +25,8 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/styled-components": "^5.1.4",
-    "cypress": "^6.0.1",
+    "cypress": "6.1.0",
+    "dotenv": "^8.2.0",
     "msw": "^0.23.0",
     "pre-commit": "^1.2.2",
     "react-is": "^17.0.1",
@@ -49,6 +50,7 @@
     "start": "react-scripts start",
     "start:headless": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
+    "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "react-scripts test",
     "test:e2e": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress'",
     "test:e2e:ci": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress:headless'",
@@ -64,8 +66,7 @@
   ],
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
