@@ -8,7 +8,7 @@ const Container = styled.div`
 `;
 function App(): JSX.Element {
   return (
-    <Container data-testId="app-container">
+    <Container data-testid="app-container">
       <Header />
       <Map />
     </Container>
