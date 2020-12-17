@@ -19,12 +19,15 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["jest"],
+    "types": [
+      "jest"
+    ],
     "baseUrl": "."
   },
   "include": [
-    "src/*.ts"
-, "src/utilTests.tsx"  ],
+    "src/*.ts",
+    "src/utilTests.tsx"
+  ],
   "exclude": [
     "src/*.test.ts"
   ]

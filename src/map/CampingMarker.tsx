@@ -1,17 +1,7 @@
-
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import GoogleMapReact from 'google-map-react';
 import { Icon } from '@iconify/react';
 import mapMarker from '@iconify/icons-mdi/map-marker';
-import { useListCampings } from './../hook';
-import { Camping } from '../model';
-
-const Container = styled.div`
-  width: 100%;
-  height: 90vh;
-  position: relative;
-`;
 
 const Marker = styled.div`
   display: block;
@@ -41,7 +31,7 @@ const InfoWindow = styled.div`
   }
 `;
 
-function CampingMarker({name}: { name: string }): JSX.Element {
+function CampingMarker({ name }: { name: string }): JSX.Element {
   const [infoWindowIsOpen, setInfoWindowIsOpen] = useState(false);
 
   return (
@@ -62,34 +52,4 @@ function CampingMarker({name}: { name: string }): JSX.Element {
   );
 }
 
-function Map(): JSX.Element {
-  const center = {
-    lat: 48.7717719,
-    lng: 2.0907224,
-  };
-  const zoom = 8.5;
-  const { campings } = useListCampings();
-
-  const markers = campings.map((camping: Camping, key: number) => {
-    return <CampingMarker
-      lng={camping.location.longitude}
-      lat={camping.location.latitude}
-      name={camping.name}
-      key={key}
-    />
-  })
-
-  return (
-    <Container>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyD5yNw_1eBAooLt00Hk3NqgRndNlNCHSGA' }}
-        defaultCenter={center}
-        defaultZoom={zoom}
-      >
-        {markers}
-      </GoogleMapReact>
-    </Container>
-  );
-}
-
-export { Map };
+export { CampingMarker }
