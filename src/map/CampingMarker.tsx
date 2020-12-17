@@ -35,7 +35,11 @@ function CampingMarker({ name }: { name: string }): JSX.Element {
   const [infoWindowIsOpen, setInfoWindowIsOpen] = useState(false);
 
   return (
-    <Marker>
+    <Marker
+      data-testid='camping-marker'
+      onMouseEnter={() => setInfoWindowIsOpen(true)}
+      onMouseLeave={() => setInfoWindowIsOpen(false)}
+    >
       {infoWindowIsOpen &&
         <InfoWindow>
           {name}
@@ -45,8 +49,6 @@ function CampingMarker({ name }: { name: string }): JSX.Element {
         icon={mapMarker}
         width={40}
         color="#2f7510"
-        onMouseEnter={() => setInfoWindowIsOpen(true)}
-        onMouseLeave={() => setInfoWindowIsOpen(false)}
       />
     </Marker>
   );
