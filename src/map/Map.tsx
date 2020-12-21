@@ -32,7 +32,7 @@ function Map(): JSX.Element {
   return (
     <Container data-testid='camping-map'>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.GOOGLE_MAP_API_KEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
         defaultCenter={center}
         defaultZoom={zoom}
       >

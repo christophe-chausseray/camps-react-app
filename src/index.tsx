@@ -6,8 +6,6 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { worker } from './mock/browser';
 import { client } from './ApolloClient';
 
-require('dotenv').config();
-
 if ('development' === process.env.NODE_ENV) {
   worker.start();
 }
