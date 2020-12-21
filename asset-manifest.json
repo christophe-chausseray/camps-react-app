@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/static/js/main.4a907dd2.chunk.js",
-    "main.js.map": "/static/js/main.4a907dd2.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.852cac91.js",
-    "runtime-main.js.map": "/static/js/runtime-main.852cac91.js.map",
-    "static/js/2.ed85d6ad.chunk.js": "/static/js/2.ed85d6ad.chunk.js",
-    "static/js/2.ed85d6ad.chunk.js.map": "/static/js/2.ed85d6ad.chunk.js.map",
-    "index.html": "/index.html",
-    "service-worker.js": "/service-worker.js",
-    "service-worker.js.map": "/service-worker.js.map",
-    "static/js/2.ed85d6ad.chunk.js.LICENSE.txt": "/static/js/2.ed85d6ad.chunk.js.LICENSE.txt"
+    "main.js": "/camps-react-app/static/js/main.4bfb7d64.chunk.js",
+    "main.js.map": "/camps-react-app/static/js/main.4bfb7d64.chunk.js.map",
+    "runtime-main.js": "/camps-react-app/static/js/runtime-main.d7f2e7f9.js",
+    "runtime-main.js.map": "/camps-react-app/static/js/runtime-main.d7f2e7f9.js.map",
+    "static/js/2.dd80d771.chunk.js": "/camps-react-app/static/js/2.dd80d771.chunk.js",
+    "static/js/2.dd80d771.chunk.js.map": "/camps-react-app/static/js/2.dd80d771.chunk.js.map",
+    "index.html": "/camps-react-app/index.html",
+    "service-worker.js": "/camps-react-app/service-worker.js",
+    "service-worker.js.map": "/camps-react-app/service-worker.js.map",
+    "static/js/2.dd80d771.chunk.js.LICENSE.txt": "/camps-react-app/static/js/2.dd80d771.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.852cac91.js",
-    "static/js/2.ed85d6ad.chunk.js",
-    "static/js/main.4a907dd2.chunk.js"
+    "static/js/runtime-main.d7f2e7f9.js",
+    "static/js/2.dd80d771.chunk.js",
+    "static/js/main.4bfb7d64.chunk.js"
   ]
 }
