@@ -1,0 +1,30 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests on Node 14.x
+
+name: Camping React APP Build and Test CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Build and test React APP
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Install dependencies
+      run: yarn install
+    - name: Build the application
+      run: yarn build
+    - name: Run the unit tests
+      run: yarn test:unit
+    - name: Run the e2e tests
+      run: yarn test:e2e:ci
+
+
+
