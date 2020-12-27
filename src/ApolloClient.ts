@@ -2,7 +2,6 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 
 const cache = new InMemoryCache();
 
-console.log(process.env);
 const link = new HttpLink({
   uri: `${process.env.REACT_APP_CAMPS_API_HOST}/graphql`,
   // Use explicit `window.fetch` so tha outgoing requests
