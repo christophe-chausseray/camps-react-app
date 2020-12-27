@@ -2,7 +2,7 @@
   "name": "camps-react-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://christophe-chausseray.github.io/camps-react-app/",
+  "homepage": ".",
   "dependencies": {
     "@apollo/client": "^3.3.3",
     "google-map-react": "^2.1.9",
