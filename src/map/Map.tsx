@@ -6,13 +6,17 @@ import { useListCampingItems } from './useListCampingItems';
 import { CampingItem } from './campingItem';
 import { CampingMarker } from './CampingMarker';
 
-const Container = styled.div`
+const Container = styled.main`
   width: 100%;
   height: 90vh;
   position: relative;
 `;
 
-function Map(): JSX.Element {
+type MapProps = {
+  setSidebarIsOpened: (value: boolean) => void
+}
+
+function Map({ setSidebarIsOpened }: MapProps): JSX.Element {
   const center = {
     lat: 48.7717719,
     lng: 2.0907224,
@@ -25,12 +29,13 @@ function Map(): JSX.Element {
       lng={campingItem.location.longitude}
       lat={campingItem.location.latitude}
       name={campingItem.name}
+      setSidebarIsOpened={setSidebarIsOpened}
       key={campingItem.id}
     />
   })
 
   return (
-    <Container data-testid='camping-map'>
+    <Container aria-label="Map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
         defaultCenter={center}

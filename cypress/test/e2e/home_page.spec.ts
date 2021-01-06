@@ -6,11 +6,11 @@ context('Home page', () => {
   })
 
   it('display the title and the marker on the map', () => {
-      cy.findByRole('heading', {name: /Le bon camping/i}).should('exist');
+      cy.findByRole('heading', { name: /Le bon camping/i }).should('exist');
 
-      cy.findByRole('img', {name: /Map/i}).should('exist');
+      cy.findByRole('main', { name: /Map/i }).should('exist');
 
-      cy.findAllByTestId('camping-marker').should(campingMarkers => {
+      cy.findAllByRole('listitem', { name: 'CampingMarker' }).should(campingMarkers => {
         expect(campingMarkers.length).to.equal(2);
       });
   });

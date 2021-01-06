@@ -6,6 +6,6 @@ describe('Header', () => {
   it('render title in the header', () => {
     render(<Header />);
 
-    screen.getByText(/Le bon camping/i);
+    screen.getByRole('heading', { name: /Le bon camping/i });
   });
 });

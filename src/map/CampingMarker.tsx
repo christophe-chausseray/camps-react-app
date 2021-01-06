@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import mapMarker from '@iconify/icons-mdi/map-marker';
 
-const Marker = styled.div`
+const Marker = styled.li`
   display: block;
 `;
 
@@ -31,17 +31,26 @@ const InfoWindow = styled.div`
   }
 `;
 
-function CampingMarker({ name }: { name: string }): JSX.Element {
+type CampingMarkerProps = {
+  name: string,
+  lng: number,
+  lat: number,
+  setSidebarIsOpened: (value: boolean) => void
+}
+
+function CampingMarker({ name, lng, lat, setSidebarIsOpened }: CampingMarkerProps): JSX.Element {
   const [infoWindowIsOpen, setInfoWindowIsOpen] = useState(false);
 
   return (
     <Marker
-      data-testid='camping-marker'
+      aria-label="CampingMarker"
+      aria-describedby={name}
       onMouseEnter={() => setInfoWindowIsOpen(true)}
       onMouseLeave={() => setInfoWindowIsOpen(false)}
+      onClick={() => setSidebarIsOpened(true)}
     >
       {infoWindowIsOpen &&
-        <InfoWindow>
+        <InfoWindow id={name} role="tooltip">
           {name}
         </InfoWindow>
       }

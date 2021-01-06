@@ -7,7 +7,7 @@ describe('App', () => {
   it('renders without crashing', () => {
     renderWithProviders(<App />);
 
-    screen.getByTestId('app-container');
+    screen.getByRole('document');
   });
 });
 
