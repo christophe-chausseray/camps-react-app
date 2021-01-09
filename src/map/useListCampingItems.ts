@@ -1,8 +1,8 @@
-import { CampingItem } from './campingItem';
 import { useQuery, gql } from '@apollo/client';
+import { CampingItem } from '../common';
 
 const LIST_CAMPING_ITEMS = gql`
-  query listCampingItems {
+  query ListCampingItems {
     campings {
       id
       name
@@ -15,13 +15,13 @@ const LIST_CAMPING_ITEMS = gql`
 `;
 
 function useListCampingItems(): { campingItems: CampingItem[] } {
-  const { data } = useQuery(LIST_CAMPING_ITEMS);
+  const result = useQuery(LIST_CAMPING_ITEMS);
 
-  if (undefined === data) {
-    return {campingItems: []};
+  if (undefined === result.data) {
+    return { campingItems: [] };
   }
 
-  return { campingItems: data.campings };
+  return { campingItems: result.data.campings };
 }
 
 export { useListCampingItems };

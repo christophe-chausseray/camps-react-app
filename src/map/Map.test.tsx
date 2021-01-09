@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from './../utilTests';
 import { Map } from './Map';
 import { useListCampingItems } from './useListCampingItems';
-import { Sidebar } from '../detailCamping/Sidebar';
 
 jest.mock('./useListCampingItems');
 
@@ -28,6 +27,7 @@ const CAMPING_ITEMS_MOCK = {
     }
   ]
 };
+
 describe('Map', () => {
   it('render the map with markers', () => {
     useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
@@ -52,26 +52,5 @@ describe('Map', () => {
 
     const infoWindow = screen.queryByText(/le super camping/i);
     expect(infoWindow).not.toBeInTheDocument();
-  });
-
-  it('can open the sidebar while on click event on the marker and then close it', () => {
-    let sidebarIsOpened = false;
-    const setSidebarIsOpened = (value: boolean) => { sidebarIsOpened = value };
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-
-    renderWithProviders(
-      <>
-        <Sidebar isOpened={sidebarIsOpened} setIsOpened={setSidebarIsOpened} />
-        <Map setSidebarIsOpened={setSidebarIsOpened} />
-      </>
-    );
-
-    userEvent.click(screen.getAllByRole('listitem', { name: /CampingMarker/i })[0]);
-
-    expect(sidebarIsOpened).toBe(true);
-
-    userEvent.click(screen.getByRole('button', { name: 'Close' }));
-
-    expect(sidebarIsOpened).toBe(false);
   });
 });

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Header } from './header';
 import { Map } from './map';
 import styled from 'styled-components';
-import { Sidebar } from './detailCamping/Sidebar';
+import { Sidebar, SidebarProvider } from './sidebar';
 
 const Container = styled.div`
   display: flex;
@@ -14,14 +14,14 @@ const Content = styled.div`
 `;
 
 function App(): JSX.Element {
-  const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
-
   return (
     <Container role="document">
       <Header />
       <Content>
-        <Sidebar isOpened={sidebarIsOpened} setIsOpened={setSidebarIsOpened} />
-        <Map setSidebarIsOpened={setSidebarIsOpened} />
+        <SidebarProvider>
+          <Sidebar />
+          <Map />
+        </SidebarProvider>
       </Content>
     </Container>
   );
