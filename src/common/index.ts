@@ -1,4 +1,2 @@
-export * from './CloseIcon';
-export * from './StarIcon';
-export * from './Tabs';
-export * from './campingItem';
+export { Tabs, Tab, CloseIcon, StarIcon } from './components';
+export { CampingItem } from './models';

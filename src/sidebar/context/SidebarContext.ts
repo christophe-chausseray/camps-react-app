@@ -16,4 +16,4 @@ const SIDEBAR_DEFAULT_VALUE = {
 
 const SidebarContext = React.createContext<SidebarContextValue>(SIDEBAR_DEFAULT_VALUE);
 
-export { SidebarContext }
+export { SidebarContextValue, SidebarContext }

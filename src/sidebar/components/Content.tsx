@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Tabs, Tab } from '../common';
+import { Tabs, Tab } from '../../common';
 import { DetailCampingItem } from './detailCampingItem';
 
 const Container = styled.div`

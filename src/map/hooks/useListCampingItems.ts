@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import { CampingItem } from '../common';
+import { CampingItem } from '../../common';
 
 const LIST_CAMPING_ITEMS = gql`
   query ListCampingItems {

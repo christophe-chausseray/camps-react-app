@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Header } from './Header';
 import { Content } from './Content';
-import { SidebarContext } from './SidebarContext';
+import { SidebarContext } from '../context';
 
 const Container = styled.aside`
   ${(props: {isExpanded: boolean}) => {
@@ -21,7 +21,7 @@ const Container = styled.aside`
 `;
 
 const Sidebar = (): JSX.Element => {
-  const { isExpanded, campingId } = useContext(SidebarContext);
+  const { isExpanded, campingId } = React.useContext(SidebarContext);
 
   if (
     null === campingId

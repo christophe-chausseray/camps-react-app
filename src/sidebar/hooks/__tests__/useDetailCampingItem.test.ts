@@ -1,5 +1,5 @@
-import { renderHookWithProviders } from '../../utilTests';
-import { useDetailCampingItem } from './useDetailCampingItem';
+import { renderHookWithProviders } from '../../../utilTests';
+import { useDetailCampingItem } from '../useDetailCampingItem';
 
 describe('Hook useDetailCampingItem', () => {
   it.skip('get the detail of a camping item', async () => {

@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import React from 'react';
 import { useLazyQuery, gql } from '@apollo/client';
 import { CampingItem } from '../../common';
 
@@ -28,13 +28,13 @@ const DETAIL_CAMPING_ITEM = gql`
 function useDetailCampingItem(campingId: string): { campingItem: CampingItem|null } {
   const [getDetailedCamping, { called, loading, data }] = useLazyQuery(DETAIL_CAMPING_ITEM, { fetchPolicy: "network-only" });
 
-  const fetchDetailCampingItem = useCallback(() => {
+  const fetchDetailCampingItem = React.useCallback(() => {
     if (null !== campingId) {
       getDetailedCamping({ variables: { campingId } });
     }
   }, [campingId, getDetailedCamping]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchDetailCampingItem()
   }, [campingId, fetchDetailCampingItem]);
 

@@ -1,2 +1,2 @@
-export * from './DetailCampingItem';
 export * from './useDetailCampingItem';
+export * from './useSidebar';

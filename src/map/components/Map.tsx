@@ -2,8 +2,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
-import { useListCampingItems } from './useListCampingItems';
-import { CampingItem } from '../common';
+import { useListCampingItems } from '../hooks';
+import { CampingItem } from '../../common';
 import { CampingMarker } from './CampingMarker';
 
 const Container = styled.main`

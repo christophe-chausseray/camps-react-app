@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { StarIcon } from '../common';
-import { CloseIcon } from '../common';
-import { useDetailCampingItem } from './detailCampingItem';
-import { SidebarContext } from './SidebarContext';
+import { StarIcon } from '../../common';
+import { CloseIcon } from '../../common';
+import { useDetailCampingItem } from '../hooks';
+import { SidebarContext } from '../context';
 
 const Container = styled.header`
   display: flex;
@@ -47,7 +47,7 @@ const CampingImage = styled.img`
 
 
 function Header() {
-  const { updateIsExpanded, campingId } = useContext(SidebarContext);
+  const { updateIsExpanded, campingId } = React.useContext(SidebarContext);
   const { campingItem } = useDetailCampingItem(campingId);
   const displayNbStars = (nbStars: number) => {
     const content = [];

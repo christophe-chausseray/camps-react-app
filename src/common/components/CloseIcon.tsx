@@ -1,11 +1,11 @@
-import React, { SVGProps } from 'react';
+import React from 'react';
 
 type IconProps = {
   title?: string;
   size?: number;
   color?: string;
   className?: string;
-} & SVGProps<SVGSVGElement>;
+} & React.SVGProps<SVGSVGElement>;
 
 const CloseIcon = ({title, size = 24, color = 'currentColor', ...props}: IconProps) => (
   <svg viewBox="0 0 24 24" width={size} height={size} {...props}>

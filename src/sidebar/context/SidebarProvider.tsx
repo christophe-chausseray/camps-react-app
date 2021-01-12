@@ -1,6 +1,6 @@
 import React from 'react';
 import { SidebarContext } from './SidebarContext';
-import { useSidebar } from './useSidebar';
+import { useSidebar } from '../hooks';
 
 type SidebarProviderProps = {
   children: React.ReactNode | React.ReactNode[] | null;

@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import mapMarker from '@iconify/icons-mdi/map-marker';
-import { SidebarContext } from '../sidebar';
+import { SidebarContext } from '../../sidebar';
 
 const Marker = styled.li`
   display: block;
@@ -40,8 +40,8 @@ type CampingMarkerProps = {
 }
 
 function CampingMarker({ id, name, lng, lat }: CampingMarkerProps): JSX.Element {
-  const [infoWindowIsOpen, setInfoWindowIsOpen] = useState(false);
-  const { isExpanded, updateIsExpanded , updateCampingId } = useContext(SidebarContext);
+  const [infoWindowIsOpen, setInfoWindowIsOpen] = React.useState(false);
+  const { isExpanded, updateIsExpanded , updateCampingId } = React.useContext(SidebarContext);
 
   const openSidebar = () => {
     updateCampingId(id);

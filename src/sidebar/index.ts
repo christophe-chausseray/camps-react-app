@@ -1,3 +1,2 @@
-export * from './Sidebar';
-export * from './SidebarContext';
-export * from './SidebarProvider';
+export { Sidebar } from './components';
+export { SidebarContext, SidebarProvider } from './context';

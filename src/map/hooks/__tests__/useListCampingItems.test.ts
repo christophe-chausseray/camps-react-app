@@ -1,5 +1,5 @@
-import { useListCampingItems } from './useListCampingItems';
-import { renderHookWithProviders } from '../utilTests';
+import { useListCampingItems } from '../useListCampingItems';
+import { renderHookWithProviders } from '../../../utilTests';
 
 describe('Hook useListCampingItems', () => {
   it('get the list of camping items', async () => {

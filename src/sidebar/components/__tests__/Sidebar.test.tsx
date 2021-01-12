@@ -1,15 +1,15 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithProviders } from './../utilTests';
-import { Map } from './../map';
-import { useListCampingItems } from './../map/useListCampingItems';
-import { useDetailCampingItem } from './detailCampingItem/useDetailCampingItem';
-import { SidebarProvider } from './SidebarProvider';
-import { Sidebar } from './Sidebar';
+import { renderWithProviders } from '../../../utilTests';
+import { Map } from '../../../map';
+import { useListCampingItems } from '../../../map/hooks';
+import { useDetailCampingItem } from '../../hooks';
+import { SidebarProvider } from '../../context';
+import { Sidebar } from '../Sidebar';
 
-jest.mock('./../map/useListCampingItems');
-jest.mock('./detailCampingItem/useDetailCampingItem');
+jest.mock('../../../map/hooks/useListCampingItems');
+jest.mock('../../hooks/useDetailCampingItem');
 
 const CAMPING_ITEMS_MOCK = {
   campingItems: [

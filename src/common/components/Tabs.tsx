@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const TabsContainer = styled.div`
@@ -42,7 +42,7 @@ const TabPanel = styled.div`
 `;
 
 function Tabs({ children }: { children: Tab[] }) {
-  const [tabIndexSelected, setTabIndexSelected] = useState(0);
+  const [tabIndexSelected, setTabIndexSelected] = React.useState(0);
 
   const changeTabSelected = (newTabIndexSelected: number) => {
     setTabIndexSelected(newTabIndexSelected);

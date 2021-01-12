@@ -1,11 +1,11 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithProviders } from './../utilTests';
-import { Map } from './Map';
-import { useListCampingItems } from './useListCampingItems';
+import { renderWithProviders } from '../../../utilTests';
+import { Map } from '../Map';
+import { useListCampingItems } from '../../hooks';
 
-jest.mock('./useListCampingItems');
+jest.mock('../../hooks/useListCampingItems');
 
 const CAMPING_ITEMS_MOCK = {
   campingItems: [

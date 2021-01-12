@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { SidebarContext } from '../SidebarContext';
-import { useDetailCampingItem } from './useDetailCampingItem';
+import { SidebarContext } from '../../context';
+import { useDetailCampingItem } from '../../hooks';
 
 const SectionTitle = styled.h3`
   border-bottom: #2f7510 1px solid;
@@ -10,7 +10,7 @@ const SectionTitle = styled.h3`
 `;
 
 function DetailCampingItem() {
-  const { campingId } = useContext(SidebarContext);
+  const { campingId } = React.useContext(SidebarContext);
   const { campingItem } = useDetailCampingItem(campingId);
 
   if (!campingItem) {
