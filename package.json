@@ -52,6 +52,7 @@
     "build": "react-scripts build",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "react-scripts test",
+    "test:unit:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "test:e2e": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress'",
     "test:e2e:ci": "start-server-and-test 'yarn start:headless' 3000 'yarn cypress:headless'",
     "cypress": "cypress open",

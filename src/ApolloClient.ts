@@ -11,8 +11,6 @@ const link = new HttpLink({
 });
 
 const client = new ApolloClient({
-  ssrMode: true,
-  ssrForceFetchDelay: 100,
   cache,
   link,
 });
