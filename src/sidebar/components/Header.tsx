@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StarIcon } from '../../common';
-import { CloseIcon } from '../../common';
+import {
+  StarIcon,
+  CloseIcon,
+  Placeholder,
+  LazyLoadedImage,
+  ImagePlaceholder
+} from '../../common';
 import { useDetailCampingItem } from '../hooks';
 import { SidebarContext } from '../context';
 
@@ -19,6 +24,10 @@ const LeftContainer = styled.div`
   text-align: center;
 `;
 
+const CampingName = styled.h2`
+  font-size: 20px;
+`;
+
 const RightContainer = styled.div`
   width: 250px;
 `;
@@ -34,21 +43,22 @@ const CloseButton = styled.button`
   }
 `;
 
-const CampingName = styled.h2`
-  font-size: 20px;
+const CampingNamePlaceholder = styled(Placeholder)`
+  min-width: 250px;
+  min-height: 45px;
+  margin: 10px 0;
 `;
 
-const CampingImage = styled.img`
-  width: 220px;
-  margin: 0 10px 10px 10px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.55);
+const StarPlaceholder = styled(Placeholder)`
+  min-width: 250px;
+  min-height: 30px;
 `;
-
 
 function Header() {
   const { updateIsExpanded, campingId } = React.useContext(SidebarContext);
-  const { campingItem } = useDetailCampingItem(campingId);
+  const { campingItem, loading } = useDetailCampingItem(campingId);
+  const placeholder = null === campingItem || loading;
+
   const displayNbStars = (nbStars: number) => {
     const content = [];
     for (let index = 0; index < nbStars; index++) {
@@ -58,8 +68,21 @@ function Header() {
     return content;
   };
 
-  if (!campingItem) {
-    return null;
+  if (placeholder) {
+    return (
+      <Container>
+        <LeftContainer>
+        <CampingNamePlaceholder />
+        <StarPlaceholder />
+      </LeftContainer>
+      <RightContainer>
+        <CloseButton aria-label="Close">
+          <CloseIcon title="Close" size={20} />
+        </CloseButton>
+        <ImagePlaceholder />
+      </RightContainer>
+      </Container>
+    );
   }
 
   return (
@@ -67,14 +90,14 @@ function Header() {
       <LeftContainer>
         <CampingName>{campingItem.name}</CampingName>
         {null !== campingItem.nb_stars &&
-          displayNbStars(campingItem.nb_stars)
-        }
+            displayNbStars(campingItem.nb_stars)
+          }
       </LeftContainer>
       <RightContainer>
         <CloseButton aria-label="Close" onClick={() => updateIsExpanded(false)}>
           <CloseIcon title="Close" size={20} />
         </CloseButton>
-        <CampingImage src={campingItem.image} alt={campingItem.name} />
+        <LazyLoadedImage src={campingItem.image} alt={campingItem.name} />
       </RightContainer>
     </Container>
   );
