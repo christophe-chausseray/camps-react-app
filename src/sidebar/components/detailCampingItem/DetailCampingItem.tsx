@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { SidebarContext } from '../../context';
 import { useDetailCampingItem } from '../../hooks';
+import { Placeholder } from '../../../common';
 
 const SectionTitle = styled.h3`
   border-bottom: #2f7510 1px solid;
@@ -9,12 +10,44 @@ const SectionTitle = styled.h3`
   color: #2f7510;
 `;
 
+const DescriptionPlaceholder = styled(Placeholder)`
+  min-width: 250px;
+  min-height: 87px;
+`;
+
+const AddressPlaceholder = styled(Placeholder)`
+  min-width: 250px;
+  min-height: 45px;
+`;
+
+const ContactPlaceholder = styled(Placeholder)`
+  min-width: 250px;
+  min-height: 45px;
+  margin-bottom: 15px;
+`;
+
 function DetailCampingItem() {
   const { campingId } = React.useContext(SidebarContext);
-  const { campingItem } = useDetailCampingItem(campingId);
+  const { campingItem, loading } = useDetailCampingItem(campingId);
+  const placeholder = null === campingItem || loading;
 
-  if (!campingItem) {
-    return null;
+  if (placeholder) {
+    return (
+      <>
+        <section>
+          <SectionTitle>Description</SectionTitle>
+          <DescriptionPlaceholder />
+        </section>
+        <section>
+          <SectionTitle>Address</SectionTitle>
+          <AddressPlaceholder />
+        </section>
+        <section>
+          <SectionTitle>Contact</SectionTitle>
+          <ContactPlaceholder />
+        </section>
+      </>
+    );
   }
 
   return (
