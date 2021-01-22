@@ -1,8 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Header } from './Header';
-import { Content } from './Content';
-import { SidebarContext } from '../context';
 
 const Container = styled.aside`
   ${(props: {isExpanded: boolean}) => {
@@ -20,19 +17,15 @@ const Container = styled.aside`
   transition: width 0.3s ease-in-out;
 `;
 
-const Sidebar = (): JSX.Element => {
-  const { isExpanded, campingId } = React.useContext(SidebarContext);
+type SidebarProps = {
+  isExpanded: boolean;
+  children: JSX.Element[];
+};
 
-  if (
-    null === campingId
-  ) {
-    return null;
-  }
-
+const Sidebar = ({ isExpanded, children }: SidebarProps): JSX.Element => {
   return (
     <Container aria-label="Sidebar" aria-expanded={isExpanded} isExpanded={isExpanded}>
-      <Header />
-      <Content />
+      {children}
     </Container>
   );
 };

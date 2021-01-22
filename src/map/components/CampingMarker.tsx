@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import mapMarker from '@iconify/icons-mdi/map-marker';
-import { SidebarContext } from '../../sidebar';
 
 const Marker = styled.li`
   display: block;
@@ -35,20 +34,13 @@ const InfoWindow = styled.div`
 type CampingMarkerProps = {
   id: string;
   name: string;
+  displayCamping: () => void;
   lng: number;
   lat: number;
 }
 
-function CampingMarker({ id, name, lng, lat }: CampingMarkerProps): JSX.Element {
+function CampingMarker({ id, name, displayCamping, lng, lat }: CampingMarkerProps): JSX.Element {
   const [infoWindowIsOpen, setInfoWindowIsOpen] = React.useState(false);
-  const { isExpanded, updateIsExpanded , updateCampingId } = React.useContext(SidebarContext);
-
-  const openSidebar = () => {
-    updateCampingId(id);
-    if (isExpanded === false) {
-      updateIsExpanded(true);
-    }
-  };
 
   return (
     <Marker
@@ -56,7 +48,7 @@ function CampingMarker({ id, name, lng, lat }: CampingMarkerProps): JSX.Element 
       aria-describedby={name}
       onMouseEnter={() => setInfoWindowIsOpen(true)}
       onMouseLeave={() => setInfoWindowIsOpen(false)}
-      onClick={() => openSidebar()}
+      onClick={() => displayCamping(id)}
     >
       {infoWindowIsOpen &&
         <InfoWindow id={name} role="tooltip">

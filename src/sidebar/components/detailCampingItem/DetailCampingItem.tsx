@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SidebarContext } from '../../context';
-import { useDetailCampingItem } from '../../hooks';
-import { Placeholder } from '../../../common';
+import { CampingItem, Placeholder } from '../../../common';
 
 const SectionTitle = styled.h3`
   border-bottom: #2f7510 1px solid;
@@ -26,11 +24,12 @@ const ContactPlaceholder = styled(Placeholder)`
   margin-bottom: 15px;
 `;
 
-function DetailCampingItem() {
-  const { campingId } = React.useContext(SidebarContext);
-  const { campingItem, loading } = useDetailCampingItem(campingId);
-  const placeholder = null === campingItem || loading;
+type DetailCampingItemProps = {
+  campingItem: CampingItem;
+  placeholder: boolean;
+};
 
+function DetailCampingItem({ campingItem, placeholder }: DetailCampingItemProps) {
   if (placeholder) {
     return (
       <>

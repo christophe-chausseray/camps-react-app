@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Tabs, Tab } from '../../common';
-import { DetailCampingItem } from './detailCampingItem';
 
 const Container = styled.div`
   max-height: 60vh;
@@ -10,12 +9,15 @@ const Container = styled.div`
   overflow-y: scroll;
 `;
 
-function Content() {
+type SidebarProps = {
+  renderDetailTab: () => void;
+}
+function SidebarContent({ renderDetailTab }: SidebarProps) {
   return (
     <Container>
       <Tabs>
         <Tab title='Detail'>
-          <DetailCampingItem />
+          {renderDetailTab()}
         </Tab>
         <Tab title='Comment'>
           <h2>Comment</h2>
@@ -25,4 +27,4 @@ function Content() {
   );
 }
 
-export { Content }
+export { SidebarContent }
