@@ -20,7 +20,7 @@ function Content(): JSX.Element {
   };
   const { campingItem, loading } = useDetailCampingItem(campingId);
   const placeholder = null === campingItem || loading;
-  const renderDetailTab = () => <DetailCampingItem campingItem={campingItem} placeholder={placeholder} />;
+//   const renderDetailTab = () => <DetailCampingItem campingItem={campingItem} placeholder={placeholder} />;
 
   return (
     <Container>
@@ -31,7 +31,8 @@ function Content(): JSX.Element {
           placeholder={placeholder}
         />
         <SidebarContent
-          renderDetailTab={renderDetailTab}
+          campingItem={campingItem}
+          placeholder={placeholder}
         />
       </Sidebar>
       <Map

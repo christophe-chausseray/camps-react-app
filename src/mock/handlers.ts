@@ -28,7 +28,7 @@ const handlers = [
 
     return response;
   }),
-
+  // Handles a "DetailCampingItem" query
   graphql.query('DetailCampingItem', (req: GraphQLMockedRequest, res: ResponseComposition, context: GraphQLMockedContext<any>) => {
     const { campingId } = req.variables;
     const response = res(
@@ -54,6 +54,27 @@ const handlers = [
 
     return response;
   }),
+  // Handles a "ListCommentsByCamping" query
+  graphql.query('ListCommentsByCamping', (req: GraphQLMockedRequest, res: ResponseComposition, context: GraphQLMockedContext<any>) => {
+    const response = res(
+      context.data({
+        comments: [
+          {
+            title: 'An amazing title',
+            description: 'The camping is amazing !',
+            author: 'chris'
+          },
+          {
+            title: 'A beutiful camping',
+            description: 'The location is perfect !',
+            author: 'ben'
+          },
+        ]
+      }),
+    );
+
+    return response;
+  })
 ];
 
 export { handlers }

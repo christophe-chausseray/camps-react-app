@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Tabs, Tab } from '../../common';
+import { Tabs, Tab, CampingItem } from '../../common';
+import { DetailCampingItem } from './detailCampingItem';
+import { CommentList } from './comment';
 
 const Container = styled.div`
   max-height: 60vh;
@@ -10,17 +12,20 @@ const Container = styled.div`
 `;
 
 type SidebarProps = {
-  renderDetailTab: () => void;
+  campingItem: CampingItem;
+  placeholder: boolean;
 }
-function SidebarContent({ renderDetailTab }: SidebarProps) {
+function SidebarContent({ campingItem, placeholder }: SidebarProps) {
+  const campingId = (!placeholder) ? campingItem.id : null;
+
   return (
     <Container>
       <Tabs>
         <Tab title='Detail'>
-          {renderDetailTab()}
+          <DetailCampingItem campingItem={campingItem} placeholder={placeholder} />
         </Tab>
         <Tab title='Comment'>
-          <h2>Comment</h2>
+          <CommentList campingId={campingId} />
         </Tab>
       </Tabs>
     </Container>
