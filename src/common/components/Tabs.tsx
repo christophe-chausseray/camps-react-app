@@ -41,7 +41,7 @@ const TabPanel = styled.div`
   padding: 0 10px;
 `;
 
-function Tabs({ children }: { children: Tab[] }) {
+function Tabs({ children }: { children: JSX.Element[] }) {
   const [tabIndexSelected, setTabIndexSelected] = React.useState(0);
 
   const changeTabSelected = (newTabIndexSelected: number) => {
@@ -75,7 +75,7 @@ function Tabs({ children }: { children: Tab[] }) {
   );
 }
 
-function Tab({ children }: { children: JSX.element[] }) {
+function Tab({ children }: { children: JSX.Element[] }) {
   return (
     <TabPanel>
         {children}

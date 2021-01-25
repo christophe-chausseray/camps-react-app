@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, Formik } from 'formik';
+import { Field, FieldProps, Form, Formik } from 'formik';
+import { useAddComment, LIST_COMMENTS_BY_CAMPING } from '../../hooks';
 
 const Container = styled.section`
   transition: max-height 0.3s ease-in-out;
@@ -48,10 +49,28 @@ const Button = styled.button`
   border-radius: 10px;
   color: white;
   font-size: 14px;
+
+  &:active,
+  &:focus,
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: pointer;
+    background-color: lightgrey;
+    color: white;
+
+    &:hover,
+    &:focus {
+      cursor: not-allowed;
+    }
+  }
 `;
 
 type CommentFormProps = {
   isExpanded: boolean;
+  campingId: string;
 }
 
 type CommentFormValue = {
@@ -60,52 +79,67 @@ type CommentFormValue = {
   author: string;
 }
 
-function CommentForm({ isExpanded }: CommentFormProps) {
+function CommentForm({ isExpanded, campingId }: CommentFormProps) {
   const initialValues: CommentFormValue = {title: '', description: '', author: ''};
+  const { addComment } = useAddComment();
 
   return (
     <Container aria-label="CommentForm" aria-expanded={isExpanded} isExpanded={isExpanded}>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, actions) => {
-          console.log(values, actions);
+        onSubmit={async (values, actions) => {
+          await addComment({
+            variables: { campingId, commentInput: values },
+            refetchQueries: [{ query: LIST_COMMENTS_BY_CAMPING, variables: { campingId } }]
+          });
         }}
       >
         {({
-          values,
           errors,
           touched,
           handleSubmit,
           isSubmitting,
-          isValidating,
           isValid
         }) => {
           return (
-            <Form name="comment">
-              <Input
-                type="text"
-                id="title"
-                name="title"
-                placeholder="Title"
-              />
-              <Textarea
-                id="description"
-                name="description"
-                placeholder="Description"
-              />
-              <Input
-                type="text"
-                id="author"
-                name="author"
-                placeholder="Author"
-              />
-              <Button type="submit">Send</Button>
+            <Form name="comment" method="post" onSubmit={handleSubmit}>
+              <Field name="title">
+                {({ field }: FieldProps) => (
+                  <Input
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    {...field}
+                  />
+                )}
+              </Field>
+              <Field name="description">
+                {({ field }: FieldProps) => (
+                  <Textarea
+                    name="description"
+                    placeholder="Description"
+                    {...field}
+                  />
+                )}
+              </Field>
+              <Field name="author">
+                {({ field }: FieldProps) => (
+                  <Input
+                    type="text"
+                    name="author"
+                    placeholder="Author"
+                    {...field}
+                  />
+                )}
+              </Field>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? `Posting...` : `Post it`}
+              </Button>
             </Form>
           )
         }}
       </Formik>
     </Container>
-
   );
 
 }

@@ -12,6 +12,13 @@ const Container = styled.ul`
   margin-bottom: 10px;
 `;
 
+const NoComments = styled.div`
+  min-height: 280px;
+  font-size: 21px;
+  text-align: center;
+  line-height: 200px;
+`;
+
 const Comment = styled.li`
   width: 97%;
   margin-top: 10px;
@@ -51,14 +58,18 @@ function CommentList({ campingId }: CommentListProps): JSX.Element {
   const placeholder = 0 === comments.length || loading;
 
   if (placeholder) {
-    return null;
+    return (
+      <NoComments>
+        <p>Be the first to comment on this camping ! ;)</p>
+      </NoComments>
+    );
   }
 
   return (
     <Container>
-      {comments.map((comment: CommentType, index: number) => {
+      {comments.map((comment: CommentType) => {
         return (
-          <Comment key={index}>
+          <Comment key={comment.id}>
             <CommentHeader>
               <IconWrapper>
                 <Icon icon={headIcon} color="lightgrey" width="24px" height="24px" />

@@ -65,7 +65,7 @@ function SidebarContent({ campingItem, placeholder }: SidebarProps) {
                 <Icon icon={plusIcon} color="#2f7510" width="20px" height="20px" />
               </IconWrapper>
             </CommentFormAdder>
-            <CommentForm isExpanded={commentFormIsOpened}/>
+            <CommentForm isExpanded={commentFormIsOpened} campingId={campingId} />
           </CommentFormWrapper>
           <CommentList campingId={campingId} />
         </Tab>

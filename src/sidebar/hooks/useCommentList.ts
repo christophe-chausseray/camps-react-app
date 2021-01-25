@@ -12,7 +12,7 @@ const LIST_COMMENTS_BY_CAMPING = gql`
   }
 `;
 
-function useCommentList(campingId: string): { comments: Comment[]; loading: boolean} {
+function useCommentList(campingId: string): { comments: Comment[]; listCommentsByCamping: () => void; loading: boolean} {
   const [listCommentsByCamping, { called, loading, data }] = useLazyQuery(LIST_COMMENTS_BY_CAMPING, { fetchPolicy: "network-only" });
 
   React.useEffect(() => {
@@ -22,10 +22,10 @@ function useCommentList(campingId: string): { comments: Comment[]; loading: bool
   }, [campingId, listCommentsByCamping]);
 
   if (!called || loading) {
-    return { comments: [], loading };
+    return { comments: [], listCommentsByCamping, loading };
   }
 
-  return { ...data, loading };
+  return { ...data, listCommentsByCamping, loading };
 }
 
-export { useCommentList }
+export { useCommentList, LIST_COMMENTS_BY_CAMPING }

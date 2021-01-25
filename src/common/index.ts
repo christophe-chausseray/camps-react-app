@@ -7,4 +7,4 @@ export {
   LazyLoadedImage,
   ImagePlaceholder
 } from './components';
-export { CampingItem, Comment } from './models';
+export * from './models';
