@@ -21,7 +21,7 @@ const DETAIL_CAMPING_ITEM = gql`
   }
 `;
 
-function useDetailCampingItem(campingId: string): { campingItem: CampingItem|null, loading: boolean } {
+function useDetailCampingItem(campingId: string): { campingItem: CampingItem|null } {
   const [getDetailedCamping, { called, loading, data }] = useLazyQuery(DETAIL_CAMPING_ITEM, { fetchPolicy: "network-only" });
 
   React.useEffect(() => {
@@ -31,10 +31,10 @@ function useDetailCampingItem(campingId: string): { campingItem: CampingItem|nul
   }, [campingId, getDetailedCamping]);
 
   if (!called || loading) {
-    return { campingItem: null, loading };
+    return { campingItem: null };
   }
 
-  return { campingItem: data.camping, loading };
+  return { campingItem: data.camping };
 }
 
 export { DETAIL_CAMPING_ITEM, useDetailCampingItem }

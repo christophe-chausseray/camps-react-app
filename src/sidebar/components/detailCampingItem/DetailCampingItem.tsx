@@ -26,11 +26,10 @@ const ContactPlaceholder = styled(Placeholder)`
 
 type DetailCampingItemProps = {
   campingItem: CampingItem;
-  placeholder: boolean;
 };
 
-function DetailCampingItem({ campingItem, placeholder }: DetailCampingItemProps) {
-  if (placeholder) {
+function DetailCampingItem({ campingItem }: DetailCampingItemProps) {
+  if (null === campingItem) {
     return (
       <>
         <section>

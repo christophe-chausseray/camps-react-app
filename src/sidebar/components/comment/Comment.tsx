@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import plusIcon from '@iconify/icons-mdi/plus';
-import { CampingItem } from '../../../common';
 import { CommentList } from './CommentList';
 import { CommentForm } from './CommentForm';
 
@@ -34,12 +33,10 @@ const IconWrapper = styled.div`
 `;
 
 type CommentProps = {
-  campingItem: CampingItem;
-  placeholder: boolean;
+  campingId: string | null;
 };
 
-function Comment({ campingItem, placeholder }: CommentProps) {
-  const campingId = (!placeholder) ? campingItem.id : null;
+function Comment({ campingId }: CommentProps) {
   const [commentFormIsOpened, setCommentFormIsOpened] = React.useState(false);
 
   return (

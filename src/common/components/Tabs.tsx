@@ -79,7 +79,7 @@ function Tabs({ children }: { children: JSX.Element[] }) {
 function Tab({ children }: { children: JSX.Element[] }) {
   return (
     <TabPanel>
-        {children}
+      {children}
     </TabPanel>
   );
 }

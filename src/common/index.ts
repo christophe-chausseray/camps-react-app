@@ -5,6 +5,9 @@ export {
   StarIcon,
   Placeholder,
   LazyLoadedImage,
-  ImagePlaceholder
+  ImagePlaceholder,
+  Sidebar,
+  SidebarHeader,
+  SidebarContent
 } from './components';
 export * from './models';

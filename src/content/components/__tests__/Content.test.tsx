@@ -113,6 +113,8 @@ describe('Content', () => {
       <Content />
     );
 
+    userEvent.click(screen.getAllByRole('listitem', { name: /CampingMarker/i })[0]);
+
     userEvent.click(screen.getByRole('listitem', { name: /CommentTab/i }));
 
     expect(screen.getByRole('form', { name: /CommentForm/i })).toBeInTheDocument();

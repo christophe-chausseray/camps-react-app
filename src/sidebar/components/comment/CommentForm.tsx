@@ -93,7 +93,7 @@ const CommentValidationSchema = Yup.object().shape({
 
 type CommentFormProps = {
   isExpanded: boolean;
-  campingId: string;
+  campingId: string | null;
 }
 
 type CommentFormValue = {
