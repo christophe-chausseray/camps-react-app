@@ -17,10 +17,6 @@ const DETAIL_CAMPING_ITEM = gql`
       phone_number
       email
       website
-      location {
-        longitude
-        latitude
-      }
     }
   }
 `;
