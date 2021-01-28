@@ -12,7 +12,11 @@ const Container = styled.main`
   position: relative;
 `;
 
-const Map = React.memo((): JSX.Element => {
+type MapProps = {
+  displayCamping: () => void;
+};
+
+function Map({ displayCamping }: MapProps): JSX.Element {
   const center = {
     lat: 48.7717719,
     lng: 2.0907224,
@@ -25,6 +29,7 @@ const Map = React.memo((): JSX.Element => {
       key={campingItem.id}
       id={campingItem.id}
       name={campingItem.name}
+      displayCamping={displayCamping}
       lng={campingItem.location.longitude}
       lat={campingItem.location.latitude}
     />
@@ -41,6 +46,6 @@ const Map = React.memo((): JSX.Element => {
       </GoogleMapReact>
     </Container>
   );
-});
+}
 
 export { Map };

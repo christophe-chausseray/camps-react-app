@@ -7,8 +7,6 @@ import {
   LazyLoadedImage,
   ImagePlaceholder
 } from '../../common';
-import { useDetailCampingItem } from '../hooks';
-import { SidebarContext } from '../context';
 
 const Container = styled.header`
   display: flex;
@@ -54,11 +52,13 @@ const StarPlaceholder = styled(Placeholder)`
   min-height: 30px;
 `;
 
-function Header() {
-  const { updateIsExpanded, campingId } = React.useContext(SidebarContext);
-  const { campingItem, loading } = useDetailCampingItem(campingId);
-  const placeholder = null === campingItem || loading;
+type SidebarProps = {
+  closeSidebar: () => void;
+  campingItem: CampingItem;
+  placeholder: boolean;
+}
 
+function SidebarHeader({ closeSidebar, campingItem, placeholder }: SidebarProps) {
   const displayNbStars = (nbStars: number) => {
     const content = [];
     for (let index = 0; index < nbStars; index++) {
@@ -94,7 +94,7 @@ function Header() {
           }
       </LeftContainer>
       <RightContainer>
-        <CloseButton aria-label="Close" onClick={() => updateIsExpanded(false)}>
+        <CloseButton aria-label="Close" onClick={closeSidebar}>
           <CloseIcon title="Close" size={20} />
         </CloseButton>
         <LazyLoadedImage src={campingItem.image} alt={campingItem.name} />
@@ -103,4 +103,4 @@ function Header() {
   );
 }
 
-export { Header }
+export { SidebarHeader }

@@ -2,14 +2,12 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../../utilTests';
-import { Map } from '../../../map';
 import { useListCampingItems } from '../../../map/hooks';
-import { useDetailCampingItem } from '../../hooks';
-import { SidebarProvider } from '../../context';
-import { Sidebar } from '../Sidebar';
+import { useDetailCampingItem } from '../../../sidebar/hooks';
+import { Content } from '../Content';
 
 jest.mock('../../../map/hooks/useListCampingItems');
-jest.mock('../../hooks/useDetailCampingItem');
+jest.mock('../../../sidebar/hooks/useDetailCampingItem');
 
 const CAMPING_ITEMS_MOCK = {
   campingItems: [
@@ -53,16 +51,13 @@ const DETAIL_CAMPING_ITEM_MOCK = {
   }
 }
 
-describe('Sidebar', () => {
+describe('Content', () => {
   it('can open the sidebar while on click event on the marker and then close it', () => {
     useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
     useDetailCampingItem.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
 
     renderWithProviders(
-      <SidebarProvider>
-        <Sidebar />
-        <Map />
-      </SidebarProvider>
+      <Content />
     );
 
     userEvent.click(screen.getAllByRole('listitem', { name: /CampingMarker/i })[0]);
@@ -79,10 +74,7 @@ describe('Sidebar', () => {
     useDetailCampingItem.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
 
     renderWithProviders(
-      <SidebarProvider>
-        <Sidebar />
-        <Map />
-      </SidebarProvider>
+      <Content />
     );
 
     userEvent.click(screen.getAllByRole('listitem', { name: /CampingMarker/i })[0]);

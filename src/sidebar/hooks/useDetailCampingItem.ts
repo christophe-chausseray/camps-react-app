@@ -28,15 +28,11 @@ const DETAIL_CAMPING_ITEM = gql`
 function useDetailCampingItem(campingId: string): { campingItem: CampingItem|null, loading: boolean } {
   const [getDetailedCamping, { called, loading, data }] = useLazyQuery(DETAIL_CAMPING_ITEM, { fetchPolicy: "network-only" });
 
-  const fetchDetailCampingItem = React.useCallback(() => {
+  React.useEffect(() => {
     if (null !== campingId) {
       getDetailedCamping({ variables: { campingId } });
     }
   }, [campingId, getDetailedCamping]);
-
-  React.useEffect(() => {
-    fetchDetailCampingItem()
-  }, [campingId, fetchDetailCampingItem]);
 
   if (!called || loading) {
     return { campingItem: null, loading };
