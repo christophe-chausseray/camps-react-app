@@ -1,4 +1,4 @@
-type CampingItem = {
+export type CampingItem = {
   id: string;
   name: string;
   location: {
@@ -16,5 +16,3 @@ type CampingItem = {
   email?: string;
   website?: string;
 }
-
-export { CampingItem }

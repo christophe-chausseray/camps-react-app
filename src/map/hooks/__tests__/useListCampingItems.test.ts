@@ -9,7 +9,7 @@ describe('Hook useListCampingItems', () => {
 
     expect(result.current.campingItems).toEqual([
       {
-        id: 'bccb351c-e447-4683-acf6-6c9be9a407cb',
+        id: expect.any(String),
         name: 'CAMPING HUTTOPIA RAMBOUILLET',
         location: {
           longitude: 1.835694,
@@ -17,7 +17,7 @@ describe('Hook useListCampingItems', () => {
         }
       },
       {
-        id: 'f8317142-7897-42bc-8f9c-33bb5cc68eec',
+        id: expect.any(String),
         name: 'CARAVANING LE VAUVERT',
         location: {
           longitude: 2.143939,

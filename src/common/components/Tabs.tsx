@@ -41,7 +41,7 @@ const TabPanel = styled.div`
   padding: 0 10px;
 `;
 
-function Tabs({ children }: { children: Tab[] }) {
+function Tabs({ children }: { children: JSX.Element[] }) {
   const [tabIndexSelected, setTabIndexSelected] = React.useState(0);
 
   const changeTabSelected = (newTabIndexSelected: number) => {
@@ -50,11 +50,12 @@ function Tabs({ children }: { children: Tab[] }) {
 
   return (
     <TabsContainer>
-      <TabList>
+      <TabList aria-label="Tabs">
         {children.map((child, tabIndex) => {
           return (
             <TabItem
               key={tabIndex}
+              aria-label={`${child.props.title}Tab`}
               aria-selected={tabIndex === tabIndexSelected ? 'true' : 'false'}
               onClick={() => changeTabSelected(tabIndex)}
               isSelected={tabIndex === tabIndexSelected}
@@ -75,7 +76,7 @@ function Tabs({ children }: { children: Tab[] }) {
   );
 }
 
-function Tab({ children }: { children: JSX.element[] }) {
+function Tab({ children }: { children: JSX.Element[] }) {
   return (
     <TabPanel>
         {children}
