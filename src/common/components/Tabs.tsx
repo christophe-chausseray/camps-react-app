@@ -50,11 +50,12 @@ function Tabs({ children }: { children: JSX.Element[] }) {
 
   return (
     <TabsContainer>
-      <TabList>
+      <TabList aria-label="Tabs">
         {children.map((child, tabIndex) => {
           return (
             <TabItem
               key={tabIndex}
+              aria-label={`${child.props.title}Tab`}
               aria-selected={tabIndex === tabIndexSelected ? 'true' : 'false'}
               onClick={() => changeTabSelected(tabIndex)}
               isSelected={tabIndex === tabIndexSelected}

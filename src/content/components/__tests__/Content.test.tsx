@@ -1,13 +1,15 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../../utilTests';
 import { useListCampingItems } from '../../../map/hooks';
-import { useDetailCampingItem } from '../../../sidebar/hooks';
+import { useAddComment, useCommentList, useDetailCampingItem } from '../../../sidebar/hooks';
 import { Content } from '../Content';
 
 jest.mock('../../../map/hooks/useListCampingItems');
 jest.mock('../../../sidebar/hooks/useDetailCampingItem');
+jest.mock('../../../sidebar/hooks/useAddComment');
+jest.mock('../../../sidebar/hooks/useCommentList');
 
 const CAMPING_ITEMS_MOCK = {
   campingItems: [
@@ -51,6 +53,12 @@ const DETAIL_CAMPING_ITEM_MOCK = {
   }
 }
 
+const COMMENT_MOCK = {
+  title: 'The test comment',
+  description : 'This is a super comment',
+  author: 'test'
+}
+
 describe('Content', () => {
   it('can open the sidebar while on click event on the marker and then close it', () => {
     useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
@@ -92,5 +100,47 @@ describe('Content', () => {
     expect(screen.getByText(/193485738/i)).toBeInTheDocument();
     expect(screen.getByText(/test@gmail.com/i)).toBeInTheDocument();
     expect(screen.getByText(/www.test-camping.com/i)).toBeInTheDocument();
+  });
+
+  it('can open the comment tab, add a comment and display it', async () => {
+    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
+    useDetailCampingItem.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    const addComment = jest.fn();
+    useAddComment.mockReturnValue({ addComment });
+    useCommentList.mockReturnValue({ comments: [{id: 'test-id', ...COMMENT_MOCK}] });
+
+    renderWithProviders(
+      <Content />
+    );
+
+    userEvent.click(screen.getByRole('listitem', { name: /CommentTab/i }));
+
+    expect(screen.getByRole('form', { name: /CommentForm/i })).toBeInTheDocument();
+
+    userEvent.type(screen.getByRole('textbox', { name: /Title/i }), COMMENT_MOCK.title);
+    userEvent.type(screen.getByRole('textbox', { name: /Description/i }), COMMENT_MOCK.description);
+    userEvent.type(screen.getByRole('textbox', { name: /Author/i }), COMMENT_MOCK.author);
+
+    userEvent.click(screen.getByRole('button', { name: /Submit Comment/i }));
+
+    await waitFor(() => {
+      expect(addComment).toHaveBeenCalledWith({
+        variables: {
+          campingId: CAMPING_ITEMS_MOCK.campingItems[0].id,
+          commentInput: {
+            title: COMMENT_MOCK.title,
+            description: COMMENT_MOCK.description,
+            author: COMMENT_MOCK.author
+          }
+        },
+        refetchQueries: expect.anything()
+      });
+    });
+
+    const commentList = screen.getByRole('list', { name: /CommentList/i });
+    expect(screen.getByRole('listitem', { name: COMMENT_MOCK.title })).toBeInTheDocument();
+    expect(within(commentList).getByText(COMMENT_MOCK.title)).toBeInTheDocument();
+    expect(within(commentList).getByText(COMMENT_MOCK.description)).toBeInTheDocument();
+    expect(within(commentList).getByText(COMMENT_MOCK.author)).toBeInTheDocument();
   });
 })

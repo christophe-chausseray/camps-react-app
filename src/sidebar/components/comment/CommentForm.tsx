@@ -107,7 +107,7 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
   const { addComment } = useAddComment();
 
   return (
-    <Container aria-label="CommentForm" aria-expanded={isExpanded} isExpanded={isExpanded}>
+    <Container aria-expanded={isExpanded} isExpanded={isExpanded}>
       <Formik
         initialValues={initialValues}
         validationSchema={CommentValidationSchema}
@@ -124,7 +124,7 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
           isValid
         }: FormikProps<any>) => {
           return (
-            <Form name="comment" method="post" onSubmit={handleSubmit}>
+            <Form aria-label="CommentForm" name="comment" method="post" onSubmit={handleSubmit}>
               <Field name="title">
                 {({ field, meta }: FieldProps) => (
                   <>
@@ -132,6 +132,7 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
                       type="text"
                       name="title"
                       placeholder="Title"
+                      aria-label="Title"
                       {...field}
                     />
                     {meta.touched && meta.error && (
@@ -146,6 +147,7 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
                     <Textarea
                     name="description"
                     placeholder="Description"
+                    aria-label="Description"
                     {...field}
                   />
                     {meta.touched && meta.error && (
@@ -161,6 +163,7 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
                       type="text"
                       name="author"
                       placeholder="Author"
+                      aria-label="Author"
                       {...field}
                     />
                     {meta.touched && meta.error && (
@@ -169,7 +172,7 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
                   </>
                 )}
               </Field>
-              <Button type="submit" disabled={isSubmitting || !isValid}>
+              <Button aria-label='Submit Comment' type="submit" disabled={isSubmitting || !isValid}>
                 {isSubmitting ? `Posting...` : `Post it`}
               </Button>
             </Form>

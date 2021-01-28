@@ -66,10 +66,10 @@ function CommentList({ campingId }: CommentListProps): JSX.Element {
   }
 
   return (
-    <Container>
+    <Container aria-label="CommentList">
       {comments.map((comment: CommentType) => {
         return (
-          <Comment key={comment.id}>
+          <Comment aria-label={comment.title} key={comment.id}>
             <CommentHeader>
               <IconWrapper>
                 <Icon icon={headIcon} color="lightgrey" width="24px" height="24px" />
