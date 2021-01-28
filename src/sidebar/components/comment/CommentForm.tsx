@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Field, FieldProps, Form, Formik } from 'formik';
+import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
+import * as Yup from 'yup';
 import { useAddComment, LIST_COMMENTS_BY_CAMPING } from '../../hooks';
 
 const Container = styled.section`
@@ -68,6 +69,28 @@ const Button = styled.button`
   }
 `;
 
+const ErrorField = styled.div`
+  width: 90%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f7b5b2;
+  color: #f72018;
+  line-height: 30px;
+  padding-left: 10px;
+`;
+
+const CommentValidationSchema = Yup.object().shape({
+  title: Yup.string()
+    .max(50, 'The title is too long')
+    .required('The title is required'),
+  description: Yup.string()
+    .required('The description is required'),
+  author: Yup.string()
+    .max(25, 'Your author username is too long')
+    .required('The author username is required'),
+})
+
 type CommentFormProps = {
   isExpanded: boolean;
   campingId: string;
@@ -87,7 +110,8 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
     <Container aria-label="CommentForm" aria-expanded={isExpanded} isExpanded={isExpanded}>
       <Formik
         initialValues={initialValues}
-        onSubmit={async (values, actions) => {
+        validationSchema={CommentValidationSchema}
+        onSubmit={async (values: CommentFormValue) => {
           await addComment({
             variables: { campingId, commentInput: values },
             refetchQueries: [{ query: LIST_COMMENTS_BY_CAMPING, variables: { campingId } }]
@@ -95,44 +119,57 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
         }}
       >
         {({
-          errors,
-          touched,
           handleSubmit,
           isSubmitting,
           isValid
-        }) => {
+        }: FormikProps<any>) => {
           return (
             <Form name="comment" method="post" onSubmit={handleSubmit}>
               <Field name="title">
-                {({ field }: FieldProps) => (
-                  <Input
-                    type="text"
-                    name="title"
-                    placeholder="Title"
-                    {...field}
-                  />
+                {({ field, meta }: FieldProps) => (
+                  <>
+                    <Input
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      {...field}
+                    />
+                    {meta.touched && meta.error && (
+                      <ErrorField>{meta.error}</ErrorField>
+                    )}
+                  </>
                 )}
               </Field>
               <Field name="description">
-                {({ field }: FieldProps) => (
-                  <Textarea
+                {({ field, meta }: FieldProps) => (
+                  <>
+                    <Textarea
                     name="description"
                     placeholder="Description"
                     {...field}
                   />
+                    {meta.touched && meta.error && (
+                      <ErrorField>{meta.error}</ErrorField>
+                    )}
+                  </>
                 )}
               </Field>
               <Field name="author">
-                {({ field }: FieldProps) => (
-                  <Input
-                    type="text"
-                    name="author"
-                    placeholder="Author"
-                    {...field}
-                  />
+                {({ field, meta }: FieldProps) => (
+                  <>
+                    <Input
+                      type="text"
+                      name="author"
+                      placeholder="Author"
+                      {...field}
+                    />
+                    {meta.touched && meta.error && (
+                      <ErrorField>{meta.error}</ErrorField>
+                    )}
+                  </>
                 )}
               </Field>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting || !isValid}>
                 {isSubmitting ? `Posting...` : `Post it`}
               </Button>
             </Form>
