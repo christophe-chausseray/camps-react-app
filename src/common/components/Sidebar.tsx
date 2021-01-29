@@ -73,7 +73,7 @@ type SidebarContentProps = {
 
 const Sidebar = ({ isExpanded, children }: SidebarProps) => {
   if (!children) {
-    throw new Error('children is mandatory');
+    throw new Error('children are mandatory');
   }
 
   return (
@@ -87,13 +87,13 @@ const SidebarHeader = ({ closeSidebar, children }: SidebarHeaderProps) => {
   return (
     <SidebarHeaderContainer>
       <TitleContainer>
-        {children.title}
+        {(children && children.title) ? children.title : null}
       </TitleContainer>
       <ImageContainer>
         <CloseButton aria-label="Close" onClick={closeSidebar}>
           <CloseIcon title="Close" size={20} />
         </CloseButton>
-        {children.image}
+        {(children && children.image) ? children.image : null}
       </ImageContainer>
     </SidebarHeaderContainer>
   );
@@ -101,7 +101,7 @@ const SidebarHeader = ({ closeSidebar, children }: SidebarHeaderProps) => {
 
 const SidebarContent = ({ children }: SidebarContentProps) => {
   if (!children) {
-    throw new Error('children is mandatory');
+    throw new Error('children are mandatory');
   }
 
   return (
