@@ -7,14 +7,10 @@ type CampingImageProps = {
 
 const CampingImage = ({ campingItem }: CampingImageProps) => {
   if (null === campingItem || !campingItem.image) {
-    return (
-      <ImagePlaceholder />
-    );
+    return <ImagePlaceholder />;
   }
 
-  return (
-    <LazyLoadedImage src={campingItem.image} alt={campingItem.name} />
-  );
-}
+  return <LazyLoadedImage src={campingItem.image} alt={campingItem.name} />;
+};
 
-export { CampingImage }
+export { CampingImage };

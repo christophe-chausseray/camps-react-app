@@ -43,11 +43,9 @@ const CampingTitle = ({ campingItem }: CampingTitleProps) => {
   return (
     <>
       <CampingName>{campingItem.name}</CampingName>
-      {campingItem.nb_stars &&
-        displayNbStars(campingItem.nb_stars)
-      }
+      {campingItem.nb_stars && displayNbStars(campingItem.nb_stars)}
     </>
   );
-}
+};
 
-export { CampingTitle }
+export { CampingTitle };

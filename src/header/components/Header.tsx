@@ -22,6 +22,6 @@ const Header = () => {
       <Title>Le bon camping</Title>
     </Container>
   );
-}
+};
 
 export { Header };

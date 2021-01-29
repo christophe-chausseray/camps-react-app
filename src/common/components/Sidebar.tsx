@@ -3,16 +3,16 @@ import styled from 'styled-components';
 import { CloseIcon } from './CloseIcon';
 
 const SidebarContainer = styled.aside`
-  ${(props: {isExpanded: boolean}) => {
+  ${(props: { isExpanded: boolean }) => {
     if (props.isExpanded) {
       return `
         width: 500px;
-      `
+      `;
     } else {
       return `
         width: 0px;
         overflow: hidden;
-      `
+      `;
     }
   }}
   transition: width 0.3s ease-in-out;
@@ -65,11 +65,11 @@ type SidebarHeaderProps = {
     title?: React.ReactNode;
     image?: React.ReactNode;
   };
-}
+};
 
 type SidebarContentProps = {
   children: React.ReactNode;
-}
+};
 
 const Sidebar = ({ isExpanded, children }: SidebarProps) => {
   if (!children) {
@@ -86,29 +86,23 @@ const Sidebar = ({ isExpanded, children }: SidebarProps) => {
 const SidebarHeader = ({ closeSidebar, children }: SidebarHeaderProps) => {
   return (
     <SidebarHeaderContainer>
-      <TitleContainer>
-        {(children && children.title) ? children.title : null}
-      </TitleContainer>
+      <TitleContainer>{children && children.title ? children.title : null}</TitleContainer>
       <ImageContainer>
         <CloseButton aria-label="Close" onClick={closeSidebar}>
           <CloseIcon title="Close" size={20} />
         </CloseButton>
-        {(children && children.image) ? children.image : null}
+        {children && children.image ? children.image : null}
       </ImageContainer>
     </SidebarHeaderContainer>
   );
-}
+};
 
 const SidebarContent = ({ children }: SidebarContentProps) => {
   if (!children) {
     throw new Error('children are mandatory');
   }
 
-  return (
-    <SidebarContentContainer>
-      {children}
-    </SidebarContentContainer>
-  );
-}
+  return <SidebarContentContainer>{children}</SidebarContentContainer>;
+};
 
-export { Sidebar, SidebarHeader, SidebarContent }
+export { Sidebar, SidebarHeader, SidebarContent };

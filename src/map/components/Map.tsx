@@ -1,4 +1,3 @@
-
 import React from 'react';
 import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
@@ -25,20 +24,24 @@ const Map = ({ displayCamping }: MapProps) => {
   const { campingItems } = useListCampingItems();
 
   const markers = campingItems.map((campingItem: CampingItem) => {
-    return <CampingMarker
-      key={campingItem.id}
-      id={campingItem.id}
-      name={campingItem.name}
-      displayCamping={displayCamping}
-      lng={campingItem.location.longitude}
-      lat={campingItem.location.latitude}
-    />
+    return (
+      <CampingMarker
+        key={campingItem.id}
+        id={campingItem.id}
+        name={campingItem.name}
+        displayCamping={displayCamping}
+        lng={campingItem.location.longitude}
+        lat={campingItem.location.latitude}
+      />
+    );
   });
 
   return (
     <Container aria-label="Map">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY ? process.env.REACT_APP_GOOGLE_MAP_API_KEY : '' }}
+        bootstrapURLKeys={{
+          key: process.env.REACT_APP_GOOGLE_MAP_API_KEY ? process.env.REACT_APP_GOOGLE_MAP_API_KEY : '',
+        }}
         defaultCenter={center}
         defaultZoom={zoom}
       >
@@ -46,6 +49,6 @@ const Map = ({ displayCamping }: MapProps) => {
       </GoogleMapReact>
     </Container>
   );
-}
+};
 
 export { Map };

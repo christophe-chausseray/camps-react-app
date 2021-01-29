@@ -16,11 +16,11 @@ const InfoWindow = styled.div`
   background-color: #3986ac;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 2px 2px 12px rgba(0,0,0,.5);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
   color: #ffff;
   font-family: ui-sans-serif;
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 100%;
     left: 50%;
@@ -37,7 +37,7 @@ type CampingMarkerProps = {
   displayCamping: (id: string) => void;
   lng: number;
   lat: number;
-}
+};
 
 const CampingMarker = ({ id, name, displayCamping, lng, lat }: CampingMarkerProps) => {
   const [infoWindowIsOpen, setInfoWindowIsOpen] = React.useState(false);
@@ -50,18 +50,14 @@ const CampingMarker = ({ id, name, displayCamping, lng, lat }: CampingMarkerProp
       onMouseLeave={() => setInfoWindowIsOpen(false)}
       onClick={() => displayCamping(id)}
     >
-      {infoWindowIsOpen &&
+      {infoWindowIsOpen && (
         <InfoWindow id={name} role="tooltip">
           {name}
         </InfoWindow>
-      }
-      <Icon
-        icon={mapMarker}
-        width={40}
-        color="#2f7510"
-      />
+      )}
+      <Icon icon={mapMarker} width={40} color="#2f7510" />
     </Marker>
   );
-}
+};
 
-export { CampingMarker }
+export { CampingMarker };

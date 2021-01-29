@@ -24,7 +24,7 @@ const CommentItem = styled.li`
   margin-top: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.55);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.55);
 `;
 
 const CommentHeader = styled.div`
@@ -51,7 +51,7 @@ const Author = styled.p`
 
 type CommentListProps = {
   campingId: string | null;
-}
+};
 
 const CommentList = ({ campingId }: CommentListProps) => {
   const { comments, loading } = useCommentList(campingId);
@@ -83,6 +83,6 @@ const CommentList = ({ campingId }: CommentListProps) => {
       })}
     </Container>
   );
-}
+};
 
-export { CommentList }
+export { CommentList };

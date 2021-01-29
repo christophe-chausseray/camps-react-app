@@ -1,4 +1,4 @@
-import { logRoles, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Sidebar, SidebarContent, SidebarHeader } from './../Sidebar';
 
@@ -16,36 +16,33 @@ describe('Sidebar', () => {
 
   it('can show the sidebar when it is expanded', () => {
     const { rerender } = render(
-      <Sidebar isExpanded="false">
-        <SidebarHeader>
-        </SidebarHeader>
+      <Sidebar isExpanded={false}>
+        <SidebarHeader closeSidebar={jest.fn()}>{{}}</SidebarHeader>
         <SidebarContent>
           <p>Sidebar content</p>
         </SidebarContent>
       </Sidebar>
     );
 
-    expect(screen.getByRole('complementary', /Sidebar/i)).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.getByRole('complementary', { name: /Sidebar/i })).toHaveAttribute('aria-expanded', 'false');
 
     rerender(
-      <Sidebar isExpanded="true">
-        <SidebarHeader>
-        </SidebarHeader>
+      <Sidebar isExpanded={true}>
+        <SidebarHeader closeSidebar={jest.fn()}>{{}}</SidebarHeader>
         <SidebarContent>
           <p>Sidebar content</p>
         </SidebarContent>
       </Sidebar>
     );
 
-    expect(screen.getByRole('complementary', /Sidebar/i)).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByRole('complementary', { name: /Sidebar/i })).toHaveAttribute('aria-expanded', 'true');
   });
 
   it('can close the sidebar', () => {
-    const closeSidebar= jest.fn();
+    const closeSidebar = jest.fn();
     render(
-      <Sidebar>
-        <SidebarHeader closeSidebar={closeSidebar}>
-        </SidebarHeader>
+      <Sidebar isExpanded={true}>
+        <SidebarHeader closeSidebar={closeSidebar}>{{}}</SidebarHeader>
         <SidebarContent>
           <p>Sidebar content</p>
         </SidebarContent>
@@ -59,19 +56,16 @@ describe('Sidebar', () => {
 
   it('throw an error when sidebar does not have children', () => {
     expect(() => {
-      render(
-        <Sidebar isExpanded="false">
-        </Sidebar>
-      );
+      render(<Sidebar isExpanded={false}>{}</Sidebar>);
     }).toThrow('children are mandatory');
   });
 
   it('display title in the sidebar', () => {
     render(
-      <Sidebar isExpanded="true">
-        <SidebarHeader>
+      <Sidebar isExpanded={true}>
+        <SidebarHeader closeSidebar={jest.fn()}>
           {{
-            title: <p>Sidebar title</p>
+            title: <p>Sidebar title</p>,
           }}
         </SidebarHeader>
       </Sidebar>
@@ -82,21 +76,21 @@ describe('Sidebar', () => {
 
   it('display image in the sidebar', () => {
     render(
-      <Sidebar isExpanded="true">
-        <SidebarHeader>
+      <Sidebar isExpanded={true}>
+        <SidebarHeader closeSidebar={jest.fn()}>
           {{
-            image: <img src="/path/to/image.jpg" alt="image" />
+            image: <img src="/path/to/image.jpg" alt="test" />,
           }}
         </SidebarHeader>
       </Sidebar>
     );
 
-    expect(screen.getByAltText(/image/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/test/i)).toBeInTheDocument();
   });
 
   it('display content in the sidebar', () => {
     render(
-      <Sidebar isExpanded="true">
+      <Sidebar isExpanded={true}>
         <SidebarContent>
           <p>Sidebar content</p>
         </SidebarContent>
@@ -109,8 +103,8 @@ describe('Sidebar', () => {
   it('throw an error when sidebar content does not have children', () => {
     expect(() => {
       render(
-        <Sidebar isExpanded="false">
-          <SidebarContent></SidebarContent>
+        <Sidebar isExpanded={false}>
+          <SidebarContent>{}</SidebarContent>
         </Sidebar>
       );
     }).toThrow('children are mandatory');

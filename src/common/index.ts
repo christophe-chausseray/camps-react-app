@@ -8,6 +8,6 @@ export {
   ImagePlaceholder,
   Sidebar,
   SidebarHeader,
-  SidebarContent
+  SidebarContent,
 } from './components';
 export * from './models';

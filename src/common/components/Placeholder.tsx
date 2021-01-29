@@ -1,4 +1,4 @@
-import styled, { css, keyframes }  from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const fading = keyframes`
   0% {
@@ -21,8 +21,8 @@ const placeholderAnimation = css`
 const Placeholder = styled.div`
   background-color: #444;
   border-radius: 20px;
-  opacity: .1;
+  opacity: 0.1;
   animation: ${placeholderAnimation};
 `;
 
-export { Placeholder }
+export { Placeholder };

@@ -15,6 +15,6 @@ const App = () => {
       <Content />
     </Container>
   );
-}
+};
 
 export default App;

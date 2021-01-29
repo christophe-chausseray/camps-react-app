@@ -52,35 +52,44 @@ const CampingInformation = ({ campingItem }: CampingInformationProps) => {
     <>
       <section>
         <SectionTitle>Description</SectionTitle>
-        {null !== campingItem.description &&
-          <p>{campingItem.description}</p>
-        }
+        {null !== campingItem.description && <p>{campingItem.description}</p>}
 
-        {null !== campingItem.nb_spots &&
-          <p><b>Capacity: </b> {campingItem.nb_spots} spots</p>
-        }
+        {null !== campingItem.nb_spots && (
+          <p>
+            <b>Capacity: </b> {campingItem.nb_spots} spots
+          </p>
+        )}
       </section>
       <section>
         <SectionTitle>Address</SectionTitle>
-        {null !== campingItem.address &&
-          <p>{campingItem.address}</p>
-        }
-        <p>{campingItem.zipcode} {campingItem.city}</p>
+        {null !== campingItem.address && <p>{campingItem.address}</p>}
+        <p>
+          {campingItem.zipcode} {campingItem.city}
+        </p>
       </section>
       <section>
         <SectionTitle>Contact</SectionTitle>
-        {null !== campingItem.phone_number &&
-          <p><b>Phone number: </b> {campingItem.phone_number}</p>
-        }
-        {null !== campingItem.email &&
-          <p><b>Email: </b> {campingItem.email}</p>
-        }
-        {null !== campingItem.website &&
-          <p><b>Website:</b> <a href={campingItem.website} title={campingItem.name}>{campingItem.website}</a></p>
-        }
+        {null !== campingItem.phone_number && (
+          <p>
+            <b>Phone number: </b> {campingItem.phone_number}
+          </p>
+        )}
+        {null !== campingItem.email && (
+          <p>
+            <b>Email: </b> {campingItem.email}
+          </p>
+        )}
+        {null !== campingItem.website && (
+          <p>
+            <b>Website:</b>{' '}
+            <a href={campingItem.website} title={campingItem.name}>
+              {campingItem.website}
+            </a>
+          </p>
+        )}
       </section>
     </>
   );
-}
+};
 
-export { CampingInformation }
+export { CampingInformation };

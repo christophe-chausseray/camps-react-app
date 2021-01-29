@@ -17,7 +17,7 @@ describe('Tabs', () => {
 
     expect(screen.getByText(/Tab 1/i)).toBeInTheDocument();
 
-    userEvent.click(screen.getByRole('listitem', { name: /Tab2/}));
+    userEvent.click(screen.getByRole('listitem', { name: /Tab2/ }));
 
     expect(screen.getByText(/Tab 2/i)).toBeInTheDocument();
   });

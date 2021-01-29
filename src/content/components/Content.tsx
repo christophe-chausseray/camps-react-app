@@ -7,7 +7,7 @@ import { Comment } from './../../comment';
 import { useCampingDetail } from './../../detail';
 
 const Container = styled.div`
-  display: flex
+  display: flex;
 `;
 
 const Content = () => {
@@ -28,7 +28,7 @@ const Content = () => {
         <SidebarHeader closeSidebar={closeSidebar}>
           {{
             title: <CampingTitle campingItem={campingItem} />,
-            image: <CampingImage campingItem={campingItem} />
+            image: <CampingImage campingItem={campingItem} />,
           }}
         </SidebarHeader>
         <SidebarContent>
@@ -45,6 +45,6 @@ const Content = () => {
       <Map displayCamping={displayCamping} />
     </Container>
   );
-}
+};
 
-export { Content }
+export { Content };

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const TabsContainer = styled.div`
   border: #2f7510 2px solid;
   margin: 10px;
-  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.55);
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.55);
 `;
 
 const TabList = styled.ul`
@@ -51,42 +51,39 @@ const Tabs = ({ children }: { children: JSX.Element[] }) => {
   return (
     <TabsContainer>
       <TabList aria-label="Tabs">
-        {children && children.map((child, tabIndex) => {
-          if (!child) {
-            return null;
+        {children &&
+          children.map((child, tabIndex) => {
+            if (!child) {
+              return null;
+            }
+
+            return (
+              <TabItem
+                key={tabIndex}
+                aria-label={child.props.title}
+                aria-selected={tabIndex === tabIndexSelected ? 'true' : 'false'}
+                onClick={() => changeTabSelected(tabIndex)}
+                isSelected={tabIndex === tabIndexSelected}
+              >
+                {child.props.title}
+              </TabItem>
+            );
+          })}
+      </TabList>
+      {children &&
+        children.map((child, tabIndex) => {
+          if (tabIndex === tabIndexSelected) {
+            return child;
           }
 
-          return (
-            <TabItem
-              key={tabIndex}
-              aria-label={child.props.title}
-              aria-selected={tabIndex === tabIndexSelected ? 'true' : 'false'}
-              onClick={() => changeTabSelected(tabIndex)}
-              isSelected={tabIndex === tabIndexSelected}
-            >
-              {child.props.title}
-            </TabItem>
-          );
+          return null;
         })}
-      </TabList>
-      {children && children.map((child, tabIndex) => {
-        if (tabIndex === tabIndexSelected) {
-          return child;
-        }
-
-        return null;
-      })}
     </TabsContainer>
   );
-}
+};
 
-const Tab = ({ children }: { children: React.ReactNode, title: string }) => {
-  return (
-    <TabPanel>
-      {children}
-    </TabPanel>
-  );
-}
+const Tab = ({ children }: { children: React.ReactNode; title: string }) => {
+  return <TabPanel>{children}</TabPanel>;
+};
 
-export { Tabs, Tab }
-
+export { Tabs, Tab };

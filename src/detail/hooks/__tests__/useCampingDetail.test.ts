@@ -27,4 +27,4 @@ describe('Hook useCampingDetail', () => {
       website: 'le-camping-huttopia.com',
     });
   });
-})
+});

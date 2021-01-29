@@ -13,8 +13,12 @@ const LIST_COMMENTS_BY_CAMPING = gql`
   }
 `;
 
-function useCommentList(campingId: string | null): { comments: Comment[]; listCommentsByCamping: () => void; loading: boolean} {
-  const [listCommentsByCamping, { called, loading, data }] = useLazyQuery(LIST_COMMENTS_BY_CAMPING, { fetchPolicy: "network-only" });
+function useCommentList(
+  campingId: string | null
+): { comments: Comment[]; listCommentsByCamping: () => void; loading: boolean } {
+  const [listCommentsByCamping, { called, loading, data }] = useLazyQuery(LIST_COMMENTS_BY_CAMPING, {
+    fetchPolicy: 'network-only',
+  });
 
   React.useEffect(() => {
     if (null !== campingId) {
@@ -29,4 +33,4 @@ function useCommentList(campingId: string | null): { comments: Comment[]; listCo
   return { ...data, listCommentsByCamping, loading };
 }
 
-export { useCommentList, LIST_COMMENTS_BY_CAMPING }
+export { useCommentList, LIST_COMMENTS_BY_CAMPING };

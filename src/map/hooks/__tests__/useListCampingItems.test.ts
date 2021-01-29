@@ -14,7 +14,7 @@ describe('Hook useListCampingItems', () => {
         location: {
           longitude: 1.835694,
           latitude: 48.630059,
-        }
+        },
       },
       {
         id: expect.any(String),
@@ -22,8 +22,8 @@ describe('Hook useListCampingItems', () => {
         location: {
           longitude: 2.143939,
           latitude: 48.411278,
-        }
-      }
+        },
+      },
     ]);
   });
-})
+});
