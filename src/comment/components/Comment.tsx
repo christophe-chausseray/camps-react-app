@@ -35,8 +35,7 @@ const IconWrapper = styled.div`
 type CommentProps = {
   campingId: string | null;
 };
-
-function Comment({ campingId }: CommentProps) {
+const Comment = ({ campingId }: CommentProps) => {
   const [commentFormIsOpened, setCommentFormIsOpened] = React.useState(false);
 
   return (

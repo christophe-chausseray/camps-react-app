@@ -9,7 +9,7 @@ const Container = styled.section`
   overflow: hidden;
   height: auto;
 
-  ${(props: CommentFormProps) => {
+  ${(props: {isExpanded: boolean}) => {
     if(props.isExpanded) {
       return `
         max-height: 100%;
@@ -96,14 +96,14 @@ type CommentFormProps = {
   campingId: string | null;
 }
 
-type CommentFormValue = {
+type CommentFormValues = {
   title: string;
   description: string;
   author: string;
 }
 
-function CommentForm({ isExpanded, campingId }: CommentFormProps) {
-  const initialValues: CommentFormValue = {title: '', description: '', author: ''};
+const CommentForm = ({ isExpanded, campingId }: CommentFormProps) => {
+  const initialValues: CommentFormValues = {title: '', description: '', author: ''};
   const { addComment } = useAddComment();
 
   return (
@@ -111,7 +111,7 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
       <Formik
         initialValues={initialValues}
         validationSchema={CommentValidationSchema}
-        onSubmit={async (values: CommentFormValue) => {
+        onSubmit={async (values: CommentFormValues) => {
           await addComment({
             variables: { campingId, commentInput: values },
             refetchQueries: [{ query: LIST_COMMENTS_BY_CAMPING, variables: { campingId } }]
@@ -130,7 +130,6 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
                   <>
                     <Input
                       type="text"
-                      name="title"
                       placeholder="Title"
                       aria-label="Title"
                       {...field}
@@ -145,11 +144,10 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
                 {({ field, meta }: FieldProps) => (
                   <>
                     <Textarea
-                    name="description"
-                    placeholder="Description"
-                    aria-label="Description"
-                    {...field}
-                  />
+                      placeholder="Description"
+                      aria-label="Description"
+                      {...field}
+                    />
                     {meta.touched && meta.error && (
                       <ErrorField>{meta.error}</ErrorField>
                     )}
@@ -161,7 +159,6 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
                   <>
                     <Input
                       type="text"
-                      name="author"
                       placeholder="Author"
                       aria-label="Author"
                       {...field}

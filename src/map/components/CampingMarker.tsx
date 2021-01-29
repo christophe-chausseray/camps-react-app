@@ -34,12 +34,12 @@ const InfoWindow = styled.div`
 type CampingMarkerProps = {
   id: string;
   name: string;
-  displayCamping: () => void;
+  displayCamping: (id: string) => void;
   lng: number;
   lat: number;
 }
 
-function CampingMarker({ id, name, displayCamping, lng, lat }: CampingMarkerProps): JSX.Element {
+const CampingMarker = ({ id, name, displayCamping, lng, lat }: CampingMarkerProps) => {
   const [infoWindowIsOpen, setInfoWindowIsOpen] = React.useState(false);
 
   return (

@@ -25,10 +25,10 @@ const ContactPlaceholder = styled(Placeholder)`
 `;
 
 type CampingInformationProps = {
-  campingItem: CampingItem;
+  campingItem: CampingItem | null;
 };
 
-function CampingInformation({ campingItem }: CampingInformationProps) {
+const CampingInformation = ({ campingItem }: CampingInformationProps) => {
   if (null === campingItem) {
     return (
       <>

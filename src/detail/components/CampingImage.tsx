@@ -2,11 +2,11 @@ import React from 'react';
 import { CampingItem, ImagePlaceholder, LazyLoadedImage } from '../../common';
 
 type CampingImageProps = {
-  campingItem: CampingItem;
+  campingItem: CampingItem | null;
 };
 
-function CampingImage({ campingItem }: CampingImageProps) {
-  if (null === campingItem) {
+const CampingImage = ({ campingItem }: CampingImageProps) => {
+  if (null === campingItem || !campingItem.image) {
     return (
       <ImagePlaceholder />
     );

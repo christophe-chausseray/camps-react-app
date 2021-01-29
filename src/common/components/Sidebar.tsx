@@ -68,7 +68,7 @@ type SidebarHeaderProps = {
 }
 
 type SidebarContentProps = {
-  children: JSX.Element[];
+  children: React.ReactNode;
 }
 
 const Sidebar = ({ isExpanded, children }: SidebarProps) => {

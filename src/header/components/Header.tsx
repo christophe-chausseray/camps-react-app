@@ -16,7 +16,7 @@ const Title = styled.h1`
   color: #ffffff;
 `;
 
-function Header(): JSX.Element {
+const Header = () => {
   return (
     <Container>
       <Title>Le bon camping</Title>

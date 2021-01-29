@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLazyQuery, gql } from '@apollo/client';
+import { Comment } from '../../common';
 
 const LIST_COMMENTS_BY_CAMPING = gql`
   query ListCommentsByCamping($campingId: ID!) {
@@ -12,7 +13,7 @@ const LIST_COMMENTS_BY_CAMPING = gql`
   }
 `;
 
-function useCommentList(campingId: string): { comments: Comment[]; listCommentsByCamping: () => void; loading: boolean} {
+function useCommentList(campingId: string | null): { comments: Comment[]; listCommentsByCamping: () => void; loading: boolean} {
   const [listCommentsByCamping, { called, loading, data }] = useLazyQuery(LIST_COMMENTS_BY_CAMPING, { fetchPolicy: "network-only" });
 
   React.useEffect(() => {

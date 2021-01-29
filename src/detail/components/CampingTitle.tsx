@@ -18,10 +18,10 @@ const StarPlaceholder = styled(Placeholder)`
 `;
 
 type CampingTitleProps = {
-  campingItem: CampingItem;
+  campingItem: CampingItem | null;
 };
 
-function CampingTitle({ campingItem }: CampingTitleProps) {
+const CampingTitle = ({ campingItem }: CampingTitleProps) => {
   const displayNbStars = (nbStars: number) => {
     const content = [];
     for (let index = 0; index < nbStars; index++) {
@@ -43,7 +43,7 @@ function CampingTitle({ campingItem }: CampingTitleProps) {
   return (
     <>
       <CampingName>{campingItem.name}</CampingName>
-      {null !== campingItem.nb_stars &&
+      {campingItem.nb_stars &&
         displayNbStars(campingItem.nb_stars)
       }
     </>

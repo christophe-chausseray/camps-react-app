@@ -13,10 +13,10 @@ const Container = styled.main`
 `;
 
 type MapProps = {
-  displayCamping: () => void;
+  displayCamping: (id: string) => void;
 };
 
-function Map({ displayCamping }: MapProps): JSX.Element {
+const Map = ({ displayCamping }: MapProps) => {
   const center = {
     lat: 48.7717719,
     lng: 2.0907224,
@@ -38,7 +38,7 @@ function Map({ displayCamping }: MapProps): JSX.Element {
   return (
     <Container aria-label="Map">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY ? process.env.REACT_APP_GOOGLE_MAP_API_KEY : '' }}
         defaultCenter={center}
         defaultZoom={zoom}
       >

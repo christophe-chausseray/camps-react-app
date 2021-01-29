@@ -10,9 +10,9 @@ const Container = styled.div`
   display: flex
 `;
 
-function Content() {
+const Content = () => {
   const [sidebarIsOpened, setSidebarIsOpened] = React.useState(false);
-  const [campingId, setCampingId] = React.useState(null);
+  const [campingId, setCampingId] = React.useState<string | null>(null);
   const closeSidebar = () => setSidebarIsOpened(false);
   const displayCamping = (id: string) => {
     if (sidebarIsOpened === false) {
