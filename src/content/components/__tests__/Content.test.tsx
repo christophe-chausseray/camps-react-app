@@ -62,8 +62,8 @@ const COMMENT_MOCK = {
 
 describe('Content', () => {
   it('can open the sidebar while on click event on the marker and then close it', () => {
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    (useListCampingItems as jest.Mock).mockReturnValue(CAMPING_ITEMS_MOCK);
+    (useCampingDetail as jest.Mock).mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
 
     renderWithProviders(<Content />);
 
@@ -77,8 +77,8 @@ describe('Content', () => {
   });
 
   it('can open the sidebar and display camping item information', () => {
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    (useListCampingItems as jest.Mock).mockReturnValue(CAMPING_ITEMS_MOCK);
+    (useCampingDetail as jest.Mock).mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
 
     renderWithProviders(<Content />);
 
@@ -100,11 +100,11 @@ describe('Content', () => {
   });
 
   it('can open the comment tab, add a comment and display it', async () => {
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    (useListCampingItems as jest.Mock).mockReturnValue(CAMPING_ITEMS_MOCK);
+    (useCampingDetail as jest.Mock).mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
     const addComment = jest.fn();
-    useAddComment.mockReturnValue({ addComment });
-    useCommentList.mockReturnValue({ comments: [{ id: 'test-id', ...COMMENT_MOCK }] });
+    (useAddComment as jest.Mock).mockReturnValue({ addComment });
+    (useCommentList as jest.Mock).mockReturnValue({ comments: [{ id: 'test-id', ...COMMENT_MOCK }] });
 
     renderWithProviders(<Content />);
 
