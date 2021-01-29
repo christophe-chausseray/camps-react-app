@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import headIcon from '@iconify/icons-mdi/head';
-import { Comment as CommentType } from '../../../common';
-import { useCommentList } from '../../hooks';
+import { Comment as CommentType } from '../../common';
+import { useCommentList } from '../hooks';
 
 const Container = styled.ul`
   list-style-type: none;

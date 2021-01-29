@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Map } from './../../map';
 import { Sidebar, SidebarHeader, SidebarContent, Tabs, Tab } from '../../common';
-import { DetailCampingItem, CampingImage, CampingTitle, Comment } from './../../sidebar';
-import { useDetailCampingItem } from './../../sidebar/hooks';
+import { CampingTitle, CampingImage, CampingInformation } from './../../detail';
+import { Comment } from './../../comment';
+import { useCampingDetail } from './../../detail';
 
 const Container = styled.div`
   display: flex
@@ -19,7 +20,7 @@ function Content() {
     }
     setCampingId(id);
   };
-  const { campingItem } = useDetailCampingItem(campingId);
+  const { campingItem } = useCampingDetail(campingId);
 
   return (
     <Container>
@@ -33,7 +34,7 @@ function Content() {
         <SidebarContent>
           <Tabs>
             <Tab title="Detail">
-              <DetailCampingItem campingItem={campingItem} />
+              <CampingInformation campingItem={campingItem} />
             </Tab>
             <Tab title="Comment">
               <Comment campingId={campingId} />

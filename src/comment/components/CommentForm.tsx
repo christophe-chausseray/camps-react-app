@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
-import { useAddComment, LIST_COMMENTS_BY_CAMPING } from '../../hooks';
+import { useAddComment, LIST_COMMENTS_BY_CAMPING } from '../hooks';
 
 const Container = styled.section`
   transition: max-height 0.3s ease-in-out;

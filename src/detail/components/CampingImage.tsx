@@ -1,5 +1,5 @@
 import React from 'react';
-import { CampingItem, ImagePlaceholder, LazyLoadedImage } from '../../../common';
+import { CampingItem, ImagePlaceholder, LazyLoadedImage } from '../../common';
 
 type CampingImageProps = {
   campingItem: CampingItem;

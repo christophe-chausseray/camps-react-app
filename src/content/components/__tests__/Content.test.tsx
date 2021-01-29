@@ -3,13 +3,14 @@ import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../../utilTests';
 import { useListCampingItems } from '../../../map/hooks';
-import { useAddComment, useCommentList, useDetailCampingItem } from '../../../sidebar/hooks';
+import { useAddComment, useCommentList } from '../../../comment/hooks';
+import { useCampingDetail } from '../../../detail/hooks';
 import { Content } from '../Content';
 
 jest.mock('../../../map/hooks/useListCampingItems');
-jest.mock('../../../sidebar/hooks/useDetailCampingItem');
-jest.mock('../../../sidebar/hooks/useAddComment');
-jest.mock('../../../sidebar/hooks/useCommentList');
+jest.mock('../../../detail/hooks/useCampingDetail');
+jest.mock('../../../comment/hooks/useAddComment');
+jest.mock('../../../comment/hooks/useCommentList');
 
 const CAMPING_ITEMS_MOCK = {
   campingItems: [
@@ -62,7 +63,7 @@ const COMMENT_MOCK = {
 describe('Content', () => {
   it('can open the sidebar while on click event on the marker and then close it', () => {
     useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useDetailCampingItem.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
 
     renderWithProviders(
       <Content />
@@ -79,7 +80,7 @@ describe('Content', () => {
 
   it('can open the sidebar and display camping item information', () => {
     useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useDetailCampingItem.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
 
     renderWithProviders(
       <Content />
@@ -104,7 +105,7 @@ describe('Content', () => {
 
   it('can open the comment tab, add a comment and display it', async () => {
     useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useDetailCampingItem.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
     const addComment = jest.fn();
     useAddComment.mockReturnValue({ addComment });
     useCommentList.mockReturnValue({ comments: [{id: 'test-id', ...COMMENT_MOCK}] });

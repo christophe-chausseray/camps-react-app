@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CampingItem, Placeholder } from '../../../common';
+import { CampingItem, Placeholder } from '../../common';
 
 const SectionTitle = styled.h3`
   border-bottom: #2f7510 1px solid;
@@ -24,11 +24,11 @@ const ContactPlaceholder = styled(Placeholder)`
   margin-bottom: 15px;
 `;
 
-type DetailCampingItemProps = {
+type CampingInformationProps = {
   campingItem: CampingItem;
 };
 
-function DetailCampingItem({ campingItem }: DetailCampingItemProps) {
+function CampingInformation({ campingItem }: CampingInformationProps) {
   if (null === campingItem) {
     return (
       <>
@@ -83,4 +83,4 @@ function DetailCampingItem({ campingItem }: DetailCampingItemProps) {
   );
 }
 
-export { DetailCampingItem }
+export { CampingInformation }

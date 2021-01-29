@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CampingItem, Placeholder, StarIcon } from '../../../common';
+import { CampingItem, Placeholder, StarIcon } from '../../common';
 
 const CampingName = styled.h2`
   font-size: 20px;

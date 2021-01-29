@@ -21,7 +21,7 @@ const DETAIL_CAMPING_ITEM = gql`
   }
 `;
 
-function useDetailCampingItem(campingId: string): { campingItem: CampingItem|null } {
+function useCampingDetail(campingId: string): { campingItem: CampingItem|null } {
   const [getDetailedCamping, { called, loading, data }] = useLazyQuery(DETAIL_CAMPING_ITEM, { fetchPolicy: "network-only" });
 
   React.useEffect(() => {
@@ -37,4 +37,4 @@ function useDetailCampingItem(campingId: string): { campingItem: CampingItem|nul
   return { campingItem: data.camping };
 }
 
-export { DETAIL_CAMPING_ITEM, useDetailCampingItem }
+export { DETAIL_CAMPING_ITEM, useCampingDetail }
