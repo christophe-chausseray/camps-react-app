@@ -1,12 +1,12 @@
 import { renderHookWithProviders } from '../../../utilTests';
-import { useDetailCampingItem } from '../useDetailCampingItem';
+import { useCampingDetail } from '../useCampingDetail';
 
-describe('Hook useDetailCampingItem', () => {
+describe('Hook useCampingDetail', () => {
   /** @todo need to find why it gets the mock response after the assertion */
   it.skip('get the detail of a camping item', async () => {
     const campingId = 'bccb351c-e447-4683-acf6-6c9be9a407cb';
 
-    const { result, waitForNextUpdate } = renderHookWithProviders(() => useDetailCampingItem(campingId));
+    const { result, waitForNextUpdate } = renderHookWithProviders(() => useCampingDetail(campingId));
 
     await waitForNextUpdate();
 

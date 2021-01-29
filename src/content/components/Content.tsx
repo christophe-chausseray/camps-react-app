@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Map } from './../../map';
-import { Sidebar, SidebarHeader, SidebarContent } from './../../sidebar';
-import { useDetailCampingItem } from './../../sidebar/hooks';
+import { Sidebar, SidebarHeader, SidebarContent, Tabs, Tab } from '../../common';
+import { CampingTitle, CampingImage, CampingInformation } from './../../detail';
+import { Comment } from './../../comment';
+import { useCampingDetail } from './../../detail';
 
 const Container = styled.div`
   display: flex
 `;
 
-function Content(): JSX.Element {
+function Content() {
   const [sidebarIsOpened, setSidebarIsOpened] = React.useState(false);
   const [campingId, setCampingId] = React.useState(null);
   const closeSidebar = () => setSidebarIsOpened(false);
@@ -18,25 +20,29 @@ function Content(): JSX.Element {
     }
     setCampingId(id);
   };
-  const { campingItem, loading } = useDetailCampingItem(campingId);
-  const placeholder = null === campingItem || loading;
+  const { campingItem } = useCampingDetail(campingId);
 
   return (
     <Container>
       <Sidebar isExpanded={sidebarIsOpened}>
-        <SidebarHeader
-          closeSidebar={closeSidebar}
-          campingItem={campingItem}
-          placeholder={placeholder}
-        />
-        <SidebarContent
-          campingItem={campingItem}
-          placeholder={placeholder}
-        />
+        <SidebarHeader closeSidebar={closeSidebar}>
+          {{
+            title: <CampingTitle campingItem={campingItem} />,
+            image: <CampingImage campingItem={campingItem} />
+          }}
+        </SidebarHeader>
+        <SidebarContent>
+          <Tabs>
+            <Tab title="Detail">
+              <CampingInformation campingItem={campingItem} />
+            </Tab>
+            <Tab title="Comment">
+              <Comment campingId={campingId} />
+            </Tab>
+          </Tabs>
+        </SidebarContent>
       </Sidebar>
-      <Map
-        displayCamping={displayCamping}
-      />
+      <Map displayCamping={displayCamping} />
     </Container>
   );
 }

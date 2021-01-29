@@ -55,7 +55,7 @@ function Tabs({ children }: { children: JSX.Element[] }) {
           return (
             <TabItem
               key={tabIndex}
-              aria-label={`${child.props.title}Tab`}
+              aria-label={child.props.title}
               aria-selected={tabIndex === tabIndexSelected ? 'true' : 'false'}
               onClick={() => changeTabSelected(tabIndex)}
               isSelected={tabIndex === tabIndexSelected}
@@ -79,7 +79,7 @@ function Tabs({ children }: { children: JSX.Element[] }) {
 function Tab({ children }: { children: JSX.Element[] }) {
   return (
     <TabPanel>
-        {children}
+      {children}
     </TabPanel>
   );
 }
