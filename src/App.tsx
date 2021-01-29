@@ -8,13 +8,13 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-function App(): JSX.Element {
+const App = () => {
   return (
     <Container role="document">
       <Header />
       <Content />
     </Container>
   );
-}
+};
 
 export default App;

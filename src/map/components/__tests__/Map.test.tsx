@@ -15,7 +15,7 @@ const CAMPING_ITEMS_MOCK = {
       location: {
         latitude: 4.1233324,
         longitude: 28.9022324,
-      }
+      },
     },
     {
       id: 'test-id-2',
@@ -23,14 +23,14 @@ const CAMPING_ITEMS_MOCK = {
       location: {
         latitude: 5.1233324,
         longitude: 22.9022324,
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
 
 describe('Map', () => {
   it('render the map with markers', () => {
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
+    (useListCampingItems as jest.Mock).mockReturnValue(CAMPING_ITEMS_MOCK);
 
     renderWithProviders(<Map />);
 
@@ -40,7 +40,7 @@ describe('Map', () => {
   });
 
   it('render the name in the info window only when we go on the marker', () => {
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
+    (useListCampingItems as jest.Mock).mockReturnValue(CAMPING_ITEMS_MOCK);
 
     renderWithProviders(<Map />);
 

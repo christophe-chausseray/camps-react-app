@@ -15,4 +15,4 @@ const client = new ApolloClient({
   link,
 });
 
-export { client }
+export { client };

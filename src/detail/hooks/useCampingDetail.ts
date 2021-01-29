@@ -21,8 +21,10 @@ const DETAIL_CAMPING_ITEM = gql`
   }
 `;
 
-function useCampingDetail(campingId: string): { campingItem: CampingItem|null } {
-  const [getDetailedCamping, { called, loading, data }] = useLazyQuery(DETAIL_CAMPING_ITEM, { fetchPolicy: "network-only" });
+function useCampingDetail(campingId: string | null): { campingItem: CampingItem | null } {
+  const [getDetailedCamping, { called, loading, data }] = useLazyQuery(DETAIL_CAMPING_ITEM, {
+    fetchPolicy: 'network-only',
+  });
 
   React.useEffect(() => {
     if (null !== campingId) {
@@ -37,4 +39,4 @@ function useCampingDetail(campingId: string): { campingItem: CampingItem|null } 
   return { campingItem: data.camping };
 }
 
-export { DETAIL_CAMPING_ITEM, useCampingDetail }
+export { DETAIL_CAMPING_ITEM, useCampingDetail };

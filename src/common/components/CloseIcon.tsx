@@ -7,7 +7,7 @@ type IconProps = {
   className?: string;
 } & React.SVGProps<SVGSVGElement>;
 
-const CloseIcon = ({title, size = 24, color = 'currentColor', ...props}: IconProps) => (
+const CloseIcon = ({ title, size = 24, color = 'currentColor', ...props }: IconProps) => (
   <svg viewBox="0 0 24 24" width={size} height={size} {...props}>
     {title && <title>{title}</title>}
     <g fillRule="nonzero" stroke={color} fill="none" strokeLinecap="round">

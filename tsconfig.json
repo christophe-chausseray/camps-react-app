@@ -25,7 +25,7 @@
     "baseUrl": "."
   },
   "include": [
-    "src/*.ts",
+    "./src/**/*.ts",
     "src/utilTests.tsx"
   ],
   "exclude": [

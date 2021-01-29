@@ -9,15 +9,15 @@ const Container = styled.section`
   overflow: hidden;
   height: auto;
 
-  ${(props: CommentFormProps) => {
-    if(props.isExpanded) {
+  ${(props: { isExpanded: boolean }) => {
+    if (props.isExpanded) {
       return `
         max-height: 100%;
-      `
+      `;
     } else {
       return `
         max-height: 0px;
-      `
+      `;
     }
   }}
 `;
@@ -81,29 +81,24 @@ const ErrorField = styled.div`
 `;
 
 const CommentValidationSchema = Yup.object().shape({
-  title: Yup.string()
-    .max(50, 'The title is too long')
-    .required('The title is required'),
-  description: Yup.string()
-    .required('The description is required'),
-  author: Yup.string()
-    .max(25, 'Your author username is too long')
-    .required('The author username is required'),
-})
+  title: Yup.string().max(50, 'The title is too long').required('The title is required'),
+  description: Yup.string().required('The description is required'),
+  author: Yup.string().max(25, 'Your author username is too long').required('The author username is required'),
+});
 
 type CommentFormProps = {
   isExpanded: boolean;
   campingId: string | null;
-}
+};
 
-type CommentFormValue = {
+type CommentFormValues = {
   title: string;
   description: string;
   author: string;
-}
+};
 
-function CommentForm({ isExpanded, campingId }: CommentFormProps) {
-  const initialValues: CommentFormValue = {title: '', description: '', author: ''};
+const CommentForm = ({ isExpanded, campingId }: CommentFormProps) => {
+  const initialValues: CommentFormValues = { title: '', description: '', author: '' };
   const { addComment } = useAddComment();
 
   return (
@@ -111,77 +106,49 @@ function CommentForm({ isExpanded, campingId }: CommentFormProps) {
       <Formik
         initialValues={initialValues}
         validationSchema={CommentValidationSchema}
-        onSubmit={async (values: CommentFormValue) => {
+        onSubmit={async (values: CommentFormValues) => {
           await addComment({
             variables: { campingId, commentInput: values },
-            refetchQueries: [{ query: LIST_COMMENTS_BY_CAMPING, variables: { campingId } }]
+            refetchQueries: [{ query: LIST_COMMENTS_BY_CAMPING, variables: { campingId } }],
           });
         }}
       >
-        {({
-          handleSubmit,
-          isSubmitting,
-          isValid
-        }: FormikProps<any>) => {
+        {({ handleSubmit, isSubmitting, isValid }: FormikProps<any>) => {
           return (
             <Form aria-label="CommentForm" name="comment" method="post" onSubmit={handleSubmit}>
               <Field name="title">
                 {({ field, meta }: FieldProps) => (
                   <>
-                    <Input
-                      type="text"
-                      name="title"
-                      placeholder="Title"
-                      aria-label="Title"
-                      {...field}
-                    />
-                    {meta.touched && meta.error && (
-                      <ErrorField>{meta.error}</ErrorField>
-                    )}
+                    <Input type="text" placeholder="Title" aria-label="Title" {...field} />
+                    {meta.touched && meta.error && <ErrorField>{meta.error}</ErrorField>}
                   </>
                 )}
               </Field>
               <Field name="description">
                 {({ field, meta }: FieldProps) => (
                   <>
-                    <Textarea
-                    name="description"
-                    placeholder="Description"
-                    aria-label="Description"
-                    {...field}
-                  />
-                    {meta.touched && meta.error && (
-                      <ErrorField>{meta.error}</ErrorField>
-                    )}
+                    <Textarea placeholder="Description" aria-label="Description" {...field} />
+                    {meta.touched && meta.error && <ErrorField>{meta.error}</ErrorField>}
                   </>
                 )}
               </Field>
               <Field name="author">
                 {({ field, meta }: FieldProps) => (
                   <>
-                    <Input
-                      type="text"
-                      name="author"
-                      placeholder="Author"
-                      aria-label="Author"
-                      {...field}
-                    />
-                    {meta.touched && meta.error && (
-                      <ErrorField>{meta.error}</ErrorField>
-                    )}
+                    <Input type="text" placeholder="Author" aria-label="Author" {...field} />
+                    {meta.touched && meta.error && <ErrorField>{meta.error}</ErrorField>}
                   </>
                 )}
               </Field>
-              <Button aria-label='Submit Comment' type="submit" disabled={isSubmitting || !isValid}>
+              <Button aria-label="Submit Comment" type="submit" disabled={isSubmitting || !isValid}>
                 {isSubmitting ? `Posting...` : `Post it`}
               </Button>
             </Form>
-          )
+          );
         }}
       </Formik>
     </Container>
   );
+};
 
-}
-
-export { CommentForm }
+export { CommentForm };

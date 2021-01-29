@@ -17,4 +17,4 @@ function useAddComment() {
   return { addComment, data };
 }
 
-export { useAddComment }
+export { useAddComment };

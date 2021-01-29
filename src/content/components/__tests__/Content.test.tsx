@@ -20,7 +20,7 @@ const CAMPING_ITEMS_MOCK = {
       location: {
         latitude: 4.1233324,
         longitude: 28.9022324,
-      }
+      },
     },
     {
       id: 'test-id-2',
@@ -28,9 +28,9 @@ const CAMPING_ITEMS_MOCK = {
       location: {
         latitude: 5.1233324,
         longitude: 22.9022324,
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
 
 const DETAIL_CAMPING_ITEM_MOCK = {
@@ -50,45 +50,41 @@ const DETAIL_CAMPING_ITEM_MOCK = {
     location: {
       latitude: 4.1233324,
       longitude: 28.9022324,
-    }
-  }
-}
+    },
+  },
+};
 
 const COMMENT_MOCK = {
   title: 'The test comment',
-  description : 'This is a super comment',
-  author: 'test'
-}
+  description: 'This is a super comment',
+  author: 'test',
+};
 
 describe('Content', () => {
   it('can open the sidebar while on click event on the marker and then close it', () => {
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    (useListCampingItems as jest.Mock).mockReturnValue(CAMPING_ITEMS_MOCK);
+    (useCampingDetail as jest.Mock).mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
 
-    renderWithProviders(
-      <Content />
-    );
+    renderWithProviders(<Content />);
 
     userEvent.click(screen.getAllByRole('listitem', { name: /CampingMarker/i })[0]);
 
-    expect(screen.getByRole('complementary', { expanded: true })).toBeInTheDocument();
+    expect(screen.getByRole('complementary', { name: /Sidebar/i })).toHaveAttribute('aria-expanded', 'true');
 
     userEvent.click(screen.getByRole('button', { name: 'Close' }));
 
-    expect(screen.getByRole('complementary', { expanded: false })).toBeInTheDocument();
+    expect(screen.getByRole('complementary', { name: /Sidebar/i })).toHaveAttribute('aria-expanded', 'false');
   });
 
   it('can open the sidebar and display camping item information', () => {
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    (useListCampingItems as jest.Mock).mockReturnValue(CAMPING_ITEMS_MOCK);
+    (useCampingDetail as jest.Mock).mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
 
-    renderWithProviders(
-      <Content />
-    );
+    renderWithProviders(<Content />);
 
     userEvent.click(screen.getAllByRole('listitem', { name: /CampingMarker/i })[0]);
 
-    expect(screen.getByRole('complementary', { expanded: true })).toBeInTheDocument();
+    expect(screen.getByRole('complementary', { name: /Sidebar/i })).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByRole('heading', { name: /le super camping/i })).toBeInTheDocument();
     expect(screen.getAllByRole('img', { name: /StarIcon/i }).length).toBe(3);
     expect(screen.getByText(/test description/i)).toBeInTheDocument();
@@ -104,15 +100,13 @@ describe('Content', () => {
   });
 
   it('can open the comment tab, add a comment and display it', async () => {
-    useListCampingItems.mockReturnValue(CAMPING_ITEMS_MOCK);
-    useCampingDetail.mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
+    (useListCampingItems as jest.Mock).mockReturnValue(CAMPING_ITEMS_MOCK);
+    (useCampingDetail as jest.Mock).mockReturnValue(DETAIL_CAMPING_ITEM_MOCK);
     const addComment = jest.fn();
-    useAddComment.mockReturnValue({ addComment });
-    useCommentList.mockReturnValue({ comments: [{id: 'test-id', ...COMMENT_MOCK}] });
+    (useAddComment as jest.Mock).mockReturnValue({ addComment });
+    (useCommentList as jest.Mock).mockReturnValue({ comments: [{ id: 'test-id', ...COMMENT_MOCK }] });
 
-    renderWithProviders(
-      <Content />
-    );
+    renderWithProviders(<Content />);
 
     userEvent.click(screen.getAllByRole('listitem', { name: /CampingMarker/i })[0]);
 
@@ -133,10 +127,10 @@ describe('Content', () => {
           commentInput: {
             title: COMMENT_MOCK.title,
             description: COMMENT_MOCK.description,
-            author: COMMENT_MOCK.author
-          }
+            author: COMMENT_MOCK.author,
+          },
         },
-        refetchQueries: expect.anything()
+        refetchQueries: expect.anything(),
       });
     });
 
@@ -146,4 +140,4 @@ describe('Content', () => {
     expect(within(commentList).getByText(COMMENT_MOCK.description)).toBeInTheDocument();
     expect(within(commentList).getByText(COMMENT_MOCK.author)).toBeInTheDocument();
   });
-})
+});

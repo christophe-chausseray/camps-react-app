@@ -4,7 +4,7 @@ export type CampingItem = {
   location: {
     longitude: number;
     latitude: number;
-  }
+  };
   description?: string;
   image?: string;
   address?: string;
@@ -15,4 +15,4 @@ export type CampingItem = {
   phone_number?: string;
   email?: string;
   website?: string;
-}
+};

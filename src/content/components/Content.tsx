@@ -7,12 +7,12 @@ import { Comment } from './../../comment';
 import { useCampingDetail } from './../../detail';
 
 const Container = styled.div`
-  display: flex
+  display: flex;
 `;
 
-function Content() {
+const Content = () => {
   const [sidebarIsOpened, setSidebarIsOpened] = React.useState(false);
-  const [campingId, setCampingId] = React.useState(null);
+  const [campingId, setCampingId] = React.useState<string | null>(null);
   const closeSidebar = () => setSidebarIsOpened(false);
   const displayCamping = (id: string) => {
     if (sidebarIsOpened === false) {
@@ -28,7 +28,7 @@ function Content() {
         <SidebarHeader closeSidebar={closeSidebar}>
           {{
             title: <CampingTitle campingItem={campingItem} />,
-            image: <CampingImage campingItem={campingItem} />
+            image: <CampingImage campingItem={campingItem} />,
           }}
         </SidebarHeader>
         <SidebarContent>
@@ -45,6 +45,6 @@ function Content() {
       <Map displayCamping={displayCamping} />
     </Container>
   );
-}
+};
 
-export { Content }
+export { Content };

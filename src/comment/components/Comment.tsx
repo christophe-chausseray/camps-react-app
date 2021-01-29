@@ -23,11 +23,11 @@ const IconWrapper = styled.div`
   margin: 20px;
   transition: all 1s linear;
 
-  ${(props: {isExpanded: boolean}) => {
+  ${(props: { isExpanded: boolean }) => {
     if (props.isExpanded) {
       return `
         transform:rotate(45deg);
-      `
+      `;
     }
   }};
 `;
@@ -35,8 +35,7 @@ const IconWrapper = styled.div`
 type CommentProps = {
   campingId: string | null;
 };
-
-function Comment({ campingId }: CommentProps) {
+const Comment = ({ campingId }: CommentProps) => {
   const [commentFormIsOpened, setCommentFormIsOpened] = React.useState(false);
 
   return (
@@ -44,10 +43,7 @@ function Comment({ campingId }: CommentProps) {
       <CommentFormWrapper>
         <CommentFormAdder>
           <CommentFormTitle>Add comment</CommentFormTitle>
-          <IconWrapper
-            isExpanded={commentFormIsOpened}
-            onClick={() => setCommentFormIsOpened(!commentFormIsOpened)}
-          >
+          <IconWrapper isExpanded={commentFormIsOpened} onClick={() => setCommentFormIsOpened(!commentFormIsOpened)}>
             <Icon icon={plusIcon} color="#2f7510" width="20px" height="20px" />
           </IconWrapper>
         </CommentFormAdder>
@@ -56,6 +52,6 @@ function Comment({ campingId }: CommentProps) {
       <CommentList campingId={campingId} />
     </>
   );
-}
+};
 
-export { Comment }
+export { Comment };

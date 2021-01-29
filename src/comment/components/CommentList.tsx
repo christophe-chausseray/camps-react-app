@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import headIcon from '@iconify/icons-mdi/head';
-import { Comment as CommentType } from '../../common';
+import { Comment } from '../../common';
 import { useCommentList } from '../hooks';
 
 const Container = styled.ul`
@@ -19,12 +19,12 @@ const NoComments = styled.div`
   line-height: 200px;
 `;
 
-const Comment = styled.li`
+const CommentItem = styled.li`
   width: 97%;
   margin-top: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.55);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.55);
 `;
 
 const CommentHeader = styled.div`
@@ -50,10 +50,10 @@ const Author = styled.p`
 `;
 
 type CommentListProps = {
-  campingId: string;
-}
+  campingId: string | null;
+};
 
-function CommentList({ campingId }: CommentListProps): JSX.Element {
+const CommentList = ({ campingId }: CommentListProps) => {
   const { comments, loading } = useCommentList(campingId);
   const placeholder = 0 === comments.length || loading;
 
@@ -67,9 +67,9 @@ function CommentList({ campingId }: CommentListProps): JSX.Element {
 
   return (
     <Container aria-label="CommentList">
-      {comments.map((comment: CommentType) => {
+      {comments.map((comment: Comment) => {
         return (
-          <Comment aria-label={comment.title} key={comment.id}>
+          <CommentItem aria-label={comment.title} key={comment.id}>
             <CommentHeader>
               <IconWrapper>
                 <Icon icon={headIcon} color="lightgrey" width="24px" height="24px" />
@@ -78,11 +78,11 @@ function CommentList({ campingId }: CommentListProps): JSX.Element {
             </CommentHeader>
             <Title>{comment.title}</Title>
             <Description>{comment.description}</Description>
-          </Comment>
+          </CommentItem>
         );
       })}
     </Container>
   );
-}
+};
 
-export { CommentList }
+export { CommentList };
