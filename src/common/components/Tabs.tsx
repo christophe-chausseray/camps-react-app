@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CampsThemedProps } from '../../common/theme';
 
 const TabsContainer = styled.div`
-  border: #2f7510 2px solid;
+  border: ${({theme}: CampsThemedProps) => theme.colors.green} 2px solid;
   margin: 10px;
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.55);
 `;
 
 const TabList = styled.ul`
   margin: 0 0 10px;
-  padding: 0;
-  background-color: #2f7510;
+  background-color: ${({theme}: CampsThemedProps) => theme.colors.green};
 `;
 
 const TabItem = styled.li`
@@ -21,7 +21,7 @@ const TabItem = styled.li`
   cursor: pointer;
   width: 49%;
   text-align: center;
-  color: #dbdbdb;
+  color: ${({theme}) => theme.colors.lightgrey};
 
   &:hover {
     color: white;

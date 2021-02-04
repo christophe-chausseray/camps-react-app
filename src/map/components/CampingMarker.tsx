@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import mapMarker from '@iconify/icons-mdi/map-marker';
+import { CampsThemedProps } from '../../common';
 
 const Marker = styled.li`
   display: block;
@@ -13,12 +14,11 @@ const InfoWindow = styled.div`
   left: -20px;
   width: 80px;
   z-index: 1000000;
-  background-color: #3986ac;
+  background-color: ${({theme}: CampsThemedProps) => theme.colors.cyan};
   padding: 10px;
   border-radius: 5px;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
-  color: #ffff;
-  font-family: ui-sans-serif;
+  color: ${({theme}: CampsThemedProps) => theme.colors.white};
   &:after {
     content: '';
     position: absolute;
@@ -27,7 +27,7 @@ const InfoWindow = styled.div`
     margin-left: -15px;
     border-width: 5px;
     border-style: solid;
-    border-color: #3986ac transparent transparent transparent;
+    border-color: ${({theme}: CampsThemedProps) => theme.colors.cyan} transparent transparent transparent;
   }
 `;
 

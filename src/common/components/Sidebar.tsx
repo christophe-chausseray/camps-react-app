@@ -1,4 +1,5 @@
 import React from 'react';
+import { CampsThemedProps } from '../theme';
 import styled from 'styled-components';
 import { CloseIcon } from './CloseIcon';
 
@@ -22,7 +23,7 @@ const SidebarHeaderContainer = styled.header`
   display: flex;
   margin-top: 10px;
   padding-bottom: 20px;
-  border-bottom: #2f7510 2px solid;
+  border-bottom: ${({theme}: CampsThemedProps) => theme.colors.green} 2px solid;
   min-height: 170px;
 `;
 
