@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CampingItem, Placeholder } from '../../common';
+import { CampingItem, CampsThemedProps, Placeholder } from '../../common';
 
 const SectionTitle = styled.h3`
-  border-bottom: #2f7510 1px solid;
+  border-bottom: ${({theme}: CampsThemedProps) => theme.colors.green} 1px solid;
   padding-bottom: 10px;
-  color: #2f7510;
+  color: ${({theme}: CampsThemedProps) => theme.colors.green};
 `;
 
 const DescriptionPlaceholder = styled(Placeholder)`

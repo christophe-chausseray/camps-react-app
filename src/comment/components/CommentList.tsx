@@ -2,19 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import headIcon from '@iconify/icons-mdi/head';
-import { Comment } from '../../common';
+import { CampsThemedProps, Comment } from '../../common';
 import { useCommentList } from '../hooks';
 
 const Container = styled.ul`
-  list-style-type: none;
-  margin-block: 0px;
-  padding-inline: 0px;
   margin-bottom: 10px;
 `;
 
 const NoComments = styled.div`
   min-height: 280px;
-  font-size: 21px;
+  font-size: ${({theme}: CampsThemedProps) => theme.fontsize.subTitle};
   text-align: center;
   line-height: 200px;
 `;
@@ -33,7 +30,7 @@ const CommentHeader = styled.div`
 `;
 
 const Title = styled.h3`
-  color: #2f7510;
+  color: ${({theme}: CampsThemedProps) => theme.colors.green};
   margin: 0px;
 `;
 
@@ -44,7 +41,7 @@ const IconWrapper = styled.div`
 `;
 
 const Author = styled.p`
-  font-size: 14px;
+  font-size: ${({theme}: CampsThemedProps) => theme.fontsize.normal};
   text-transform: capitalize;
   padding-left: 5px;
 `;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { useAddComment, LIST_COMMENTS_BY_CAMPING } from '../hooks';
+import { CampsThemedProps } from '../../common';
 
 const Container = styled.section`
   transition: max-height 0.3s ease-in-out;
@@ -26,7 +27,7 @@ const Input = styled.input`
   width: 90%;
   height: 30px;
   margin: 10px;
-  border: 1px solid lightgrey;
+  border: 1px solid ${({theme}: CampsThemedProps) => theme.colors.lightgrey};
   border-radius: 4px;
 `;
 
@@ -34,7 +35,7 @@ const Textarea = styled.textarea`
   width: 90%;
   height: 100px;
   margin: 0 10px;
-  border: 1px solid lightgrey;
+  border: 1px solid ${({theme}: CampsThemedProps) => theme.colors.lightgrey};
   border-radius: 4px;
 `;
 
@@ -45,11 +46,11 @@ const Button = styled.button`
   margin-left: auto;
   display: block;
   height: 40px;
-  background-color: #2f7510;
-  border: 1px solid lightgrey;
+  background-color: ${({theme}: CampsThemedProps) => theme.colors.green};
+  border: 1px solid ${({theme}: CampsThemedProps) => theme.colors.lightgrey};
   border-radius: 10px;
   color: white;
-  font-size: 14px;
+  font-size: ${({theme}: CampsThemedProps) => theme.fontsize.normal};
 
   &:active,
   &:focus,
@@ -59,7 +60,7 @@ const Button = styled.button`
 
   &:disabled {
     cursor: pointer;
-    background-color: lightgrey;
+    background-color: ${({theme}: CampsThemedProps) => theme.colors.lightgrey};
     color: white;
 
     &:hover,
@@ -74,8 +75,8 @@ const ErrorField = styled.div`
   margin-left: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  background-color: #f7b5b2;
-  color: #f72018;
+  background-color: ${({theme}: CampsThemedProps) => theme.colors.lightred};
+  color: ${({theme}: CampsThemedProps) => theme.colors.red};
   line-height: 30px;
   padding-left: 10px;
 `;

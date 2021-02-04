@@ -4,9 +4,10 @@ import { Icon } from '@iconify/react';
 import plusIcon from '@iconify/icons-mdi/plus';
 import { CommentList } from './CommentList';
 import { CommentForm } from './CommentForm';
+import { CampsThemedProps } from '../../common';
 
 const CommentFormWrapper = styled.section`
-  border: 2px #2f7510 solid;
+  border: 2px ${({theme}: CampsThemedProps) => theme.colors.green} solid;
 `;
 
 const CommentFormAdder = styled.div`
@@ -16,7 +17,7 @@ const CommentFormAdder = styled.div`
 const CommentFormTitle = styled.h3`
   width: 90%;
   margin-left: 10px;
-  color: #2f7510;
+  color: ${({theme}: CampsThemedProps) => theme.colors.green};
 `;
 
 const IconWrapper = styled.div`

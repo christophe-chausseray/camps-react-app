@@ -11,3 +11,4 @@ export {
   SidebarContent,
 } from './components';
 export * from './models';
+export * from './theme';
