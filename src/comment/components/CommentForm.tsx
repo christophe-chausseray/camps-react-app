@@ -5,13 +5,12 @@ import * as Yup from 'yup';
 import { useAddComment, LIST_COMMENTS_BY_CAMPING } from '../hooks';
 import { CampsThemedProps } from '../../common';
 
-const Container = styled.section`
-  transition: max-height 0.3s ease-in-out;
+const CommentFormStyle = styled(Form)`
   overflow: hidden;
   height: auto;
 
-  ${(props: { isExpanded: boolean }) => {
-    if (props.isExpanded) {
+  ${(props) => {
+    if (props['aria-expanded']) {
       return `
         max-height: 100%;
       `;
@@ -89,6 +88,7 @@ const CommentValidationSchema = Yup.object().shape({
 
 type CommentFormProps = {
   isExpanded: boolean;
+  setIsExpanded: (isExpanded: boolean) => void;
   campingId: string | null;
 };
 
@@ -98,12 +98,11 @@ type CommentFormValues = {
   author: string;
 };
 
-const CommentForm = ({ isExpanded, campingId }: CommentFormProps) => {
+const CommentForm = ({ isExpanded, setIsExpanded, campingId }: CommentFormProps) => {
   const initialValues: CommentFormValues = { title: '', description: '', author: '' };
   const { addComment } = useAddComment();
 
   return (
-    <Container aria-expanded={isExpanded} isExpanded={isExpanded}>
       <Formik
         initialValues={initialValues}
         validationSchema={CommentValidationSchema}
@@ -112,11 +111,12 @@ const CommentForm = ({ isExpanded, campingId }: CommentFormProps) => {
             variables: { campingId, commentInput: values },
             refetchQueries: [{ query: LIST_COMMENTS_BY_CAMPING, variables: { campingId } }],
           });
+          setIsExpanded(false);
         }}
       >
         {({ handleSubmit, isSubmitting, isValid }: FormikProps<any>) => {
           return (
-            <Form aria-label="CommentForm" name="comment" method="post" onSubmit={handleSubmit}>
+            <CommentFormStyle aria-label="CommentForm" aria-expanded={isExpanded} name="comment" method="post" onSubmit={handleSubmit}>
               <Field name="title">
                 {({ field, meta }: FieldProps) => (
                   <>
@@ -144,11 +144,10 @@ const CommentForm = ({ isExpanded, campingId }: CommentFormProps) => {
               <Button aria-label="Submit Comment" type="submit" disabled={isSubmitting || !isValid}>
                 {isSubmitting ? `Posting...` : `Post it`}
               </Button>
-            </Form>
+            </CommentFormStyle>
           );
         }}
       </Formik>
-    </Container>
   );
 };
 

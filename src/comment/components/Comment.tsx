@@ -10,8 +10,12 @@ const CommentFormWrapper = styled.section`
   border: 2px ${({theme}: CampsThemedProps) => theme.colors.green} solid;
 `;
 
-const CommentFormAdder = styled.div`
+const CommentFormAdder = styled.section`
   display: flex;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const CommentFormTitle = styled.h3`
@@ -42,13 +46,13 @@ const Comment = ({ campingId }: CommentProps) => {
   return (
     <>
       <CommentFormWrapper>
-        <CommentFormAdder>
+        <CommentFormAdder aria-label="Add Comment" onClick={() => setCommentFormIsOpened(!commentFormIsOpened)}>
           <CommentFormTitle>Add comment</CommentFormTitle>
           <IconWrapper isExpanded={commentFormIsOpened} onClick={() => setCommentFormIsOpened(!commentFormIsOpened)}>
             <Icon icon={plusIcon} color="#2f7510" width="20px" height="20px" />
           </IconWrapper>
         </CommentFormAdder>
-        <CommentForm isExpanded={commentFormIsOpened} campingId={campingId} />
+        <CommentForm isExpanded={commentFormIsOpened} setIsExpanded={setCommentFormIsOpened} campingId={campingId} />
       </CommentFormWrapper>
       <CommentList campingId={campingId} />
     </>
