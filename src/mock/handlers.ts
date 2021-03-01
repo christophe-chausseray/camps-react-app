@@ -9,7 +9,7 @@ type NewComments = {
 
 const newComments: NewComments = {};
 
-const fakeData = {
+const FAKE_DATA = {
   campings: [
     {
       id: uuidv4(),
@@ -78,14 +78,14 @@ const handlers = [
         context.data({
           campings: [
             {
-              id: fakeData.campings[0].id,
-              name: fakeData.campings[0].name,
-              location: fakeData.campings[0].location,
+              id: FAKE_DATA.campings[0].id,
+              name: FAKE_DATA.campings[0].name,
+              location: FAKE_DATA.campings[0].location,
             },
             {
-              id: fakeData.campings[1].id,
-              name: fakeData.campings[1].name,
-              location: fakeData.campings[1].location,
+              id: FAKE_DATA.campings[1].id,
+              name: FAKE_DATA.campings[1].name,
+              location: FAKE_DATA.campings[1].location,
             },
           ],
         })
@@ -99,7 +99,7 @@ const handlers = [
     'DetailCampingItem',
     (req: GraphQLMockedRequest, res: ResponseComposition, context: GraphQLMockedContext<any>) => {
       const { campingId } = req.variables;
-      const camping = fakeData.campings.find((camping) => campingId === camping.id);
+      const camping = FAKE_DATA.campings.find((camping) => campingId === camping.id);
 
       if (undefined === camping) {
         return res(
@@ -137,7 +137,7 @@ const handlers = [
     'ListCommentsByCamping',
     (req: GraphQLMockedRequest, res: ResponseComposition, context: GraphQLMockedContext<any>) => {
       const { campingId } = req.variables;
-      const camping = fakeData.campings.find((camping) => campingId === camping.id);
+      const camping = FAKE_DATA.campings.find((camping) => campingId === camping.id);
       const commentsAdded =
         null !== sessionStorage.getItem('newComments') &&
         undefined !== JSON.parse(sessionStorage.getItem('newComments') as string)[campingId]
@@ -196,4 +196,4 @@ const handlers = [
   ),
 ];
 
-export { handlers };
+export { handlers, FAKE_DATA };
