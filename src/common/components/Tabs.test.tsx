@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../../theme';
-import { Tabs, Tab } from '../Tabs';
+import { theme } from '../theme';
+import { Tabs, Tab } from './Tabs';
 
 describe('Tabs', () => {
   it('can switch from one Tab to another', () => {

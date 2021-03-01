@@ -1,9 +1,9 @@
 import React from 'react';
 import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithProviders } from '../../../utilTests';
-import { Content } from '../Content';
-import { FAKE_DATA } from '../../../mock/handlers';
+import { renderWithProviders } from '../../utilTests';
+import { Content } from './Content';
+import { FAKE_DATA } from '../../mock/handlers';
 
 const COMMENT_MOCK = {
   title: 'The test comment',

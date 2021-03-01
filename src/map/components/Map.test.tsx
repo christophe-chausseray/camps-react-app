@@ -1,8 +1,8 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithProviders } from '../../../utilTests';
-import { Map } from '../Map';
+import { renderWithProviders } from '../../utilTests';
+import { Map } from './Map';
 
 describe('Map', () => {
   it('render the map with markers', async () => {

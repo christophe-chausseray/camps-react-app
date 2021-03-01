@@ -1,7 +1,6 @@
 import { graphql, GraphQLMockedContext, GraphQLMockedRequest, ResponseComposition } from 'msw';
 import { v4 as uuidv4 } from 'uuid';
 import { Comment } from '../common';
-//import { Comment as CommentType } from '../common';
 
 type NewComments = {
   [campingId: string]: Comment[];
