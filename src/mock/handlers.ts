@@ -35,12 +35,14 @@ const FAKE_DATA = {
           title: 'An amazing title',
           description: 'The camping is amazing !',
           author: 'chris',
+          created_at: '2020-03-29',
         },
         {
           id: uuidv4(),
           title: 'A beutiful camping',
           description: 'The location is perfect !',
           author: 'ben',
+          created_at: '2019-02-18',
         },
       ],
     },
@@ -176,6 +178,7 @@ const handlers = [
         title: commentInput.title,
         description: commentInput.description,
         author: commentInput.author,
+        created_at: new Date().toString(),
       };
 
       if (!newComments.hasOwnProperty(campingId)) {

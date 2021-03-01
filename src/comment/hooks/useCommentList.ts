@@ -9,6 +9,7 @@ const LIST_COMMENTS_BY_CAMPING = gql`
       title
       description
       author
+      created_at
     }
   }
 `;
