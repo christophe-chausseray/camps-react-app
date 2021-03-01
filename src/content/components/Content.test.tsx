@@ -4,11 +4,12 @@ import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../utilTests';
 import { Content } from './Content';
 import { FAKE_DATA } from '../../mock/handlers';
+import { formatDate } from '../../common';
 
 const COMMENT_MOCK = {
   title: 'The test comment',
   description: 'This is a super comment',
-  author: 'test',
+  author: 'test'
 };
 
 describe('Content', () => {
@@ -65,9 +66,9 @@ describe('Content', () => {
 
     await waitFor(() => {
       const commentList = screen.getByRole('list', { name: /CommentList/i });
-      expect(screen.getByRole('listitem', { name: COMMENT_MOCK.title })).toBeInTheDocument();
       expect(within(commentList).getByText(COMMENT_MOCK.title)).toBeInTheDocument();
       expect(within(commentList).getByText(COMMENT_MOCK.description)).toBeInTheDocument();
+      expect(within(commentList).getByText(formatDate())).toBeInTheDocument();
       expect(within(commentList).getByText(COMMENT_MOCK.author)).toBeInTheDocument();
     });
   });

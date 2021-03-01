@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import headIcon from '@iconify/icons-mdi/head';
-import { CampsThemedProps, Comment } from '../../common';
+import { CampsThemedProps, Comment, formatDate } from '../../common';
 import { useCommentList } from '../hooks';
 
 const Container = styled.ul`
@@ -11,7 +11,7 @@ const Container = styled.ul`
 
 const NoComments = styled.div`
   min-height: 280px;
-  font-size: ${({theme}: CampsThemedProps) => theme.fontsize.subTitle};
+  font-size: ${({ theme }: CampsThemedProps) => theme.fontsize.subTitle};
   text-align: center;
   line-height: 200px;
 `;
@@ -25,12 +25,12 @@ const CommentItem = styled.li`
 `;
 
 const CommentHeader = styled.div`
-  display: float;
+  display: flex;
   margin-top: 10px;
 `;
 
 const Title = styled.h3`
-  color: ${({theme}: CampsThemedProps) => theme.colors.green};
+  color: ${({ theme }: CampsThemedProps) => theme.colors.green};
   margin: 0px;
 `;
 
@@ -41,9 +41,14 @@ const IconWrapper = styled.div`
 `;
 
 const Author = styled.p`
-  font-size: ${({theme}: CampsThemedProps) => theme.fontsize.normal};
+  font-size: ${({ theme }: CampsThemedProps) => theme.fontsize.normal};
   text-transform: capitalize;
   padding-left: 5px;
+  flex-grow: 2;
+`;
+
+const CreatedDate = styled.p`
+  margin-right: 10px;
 `;
 
 type CommentListProps = {
@@ -72,6 +77,9 @@ const CommentList = ({ campingId }: CommentListProps) => {
                 <Icon icon={headIcon} color="lightgrey" width="24px" height="24px" />
               </IconWrapper>
               <Author>{comment.author}</Author>
+              <CreatedDate>
+                {formatDate(comment.created_at)}
+              </CreatedDate>
             </CommentHeader>
             <Title>{comment.title}</Title>
             <Description>{comment.description}</Description>
