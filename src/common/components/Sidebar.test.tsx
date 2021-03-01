@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../../theme';
-import { Sidebar, SidebarContent, SidebarHeader } from './../Sidebar';
+import { theme } from '../theme';
+import { Sidebar, SidebarContent, SidebarHeader } from './Sidebar';
 
 describe('Sidebar', () => {
   let originalError: () => void;
