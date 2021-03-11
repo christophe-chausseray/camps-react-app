@@ -84,7 +84,7 @@ yarn build
 
 ## <a name="tests"></a> Tests
 
-This API is automated tested following the [Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html) : Unit tests, Integration tests and End-to-End tests.
+This App is tested with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) and [Cypress](https://www.cypress.io/). It's using as well [MSW](https://mswjs.io/) for mocking the API queries in test environment.
 
 Those tests can be run with :
 ```bash
