@@ -3,7 +3,7 @@
 </h3>
 
 <p align="center">
-  <a href="https://nodejs.org/en/">React Application</a>
+  <a href="https://reactjs.org/">React Application</a>
   using <a href="https://www.apollographql.com/docs/react/">Apollo Client</a>,
   built with <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a>.
 </p>
